@@ -6,17 +6,16 @@
 package rti_Windows;
 
 import java.sql.*;
-import rti_Windows.*;
 
 /**
  *
  * @author Pierre
  */
 public class GestionBD {
-    Connection con;
-    Statement state; 
-    ResultSet resSet; 
-    AccessBD abd;
+    protected Connection con;
+    protected PreparedStatement pstate; 
+    protected ResultSet resSet; 
+    private AccessBD abd;
 
     public GestionBD(){
     }
@@ -31,8 +30,9 @@ public class GestionBD {
     }
     
     public void requete(String req) throws Exception {
-        state = con.createStatement(); // ca lance exception à"!(àç'"!(àç'"!
-        resSet = state.executeQuery("SELECT * FROM Ports"); 
+        pstate = con.prepareStatement("SELECT * FROM Ports"); // ca lance exception à"!(àç'"!(àç'"!
+        //System.out.println("coucou56646"); 
+        resSet = pstate.executeQuery(); 
         afficheTable(); 
         /*while(resSet.next()) { 
             System.out.println("%s\n", resSet.getString("nom_port"));//,resSet.getString(2),resSet.getInt(3),resSet.getInt(4));
