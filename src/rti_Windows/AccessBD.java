@@ -38,6 +38,12 @@ public class AccessBD extends javax.swing.JFrame {
         ResRequete = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Requete SQL");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Requête Select :");
 
@@ -106,6 +112,15 @@ public class AccessBD extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER)
             ValiderButtonActionPerformed(null);
     }//GEN-LAST:event_TextCommandeKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        try {
+            gbd.con.close(); 
+            gbd.pstate.close();
+            gbd.resSet.close(); 
+        } catch (Exception ex) {} 
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
