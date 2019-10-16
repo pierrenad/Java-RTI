@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
  */
 public class AccessBD extends javax.swing.JFrame {
 
-    GestionBD gbd = new GestionBD(this); 
+    protected GestionBD gbd = new GestionBD(this); 
     
     /**
      * Creates new form AccessBD
@@ -103,7 +103,7 @@ public class AccessBD extends javax.swing.JFrame {
             gbd.requete(TextCommande.getText()); 
             
         } catch(Exception e) {
-            System.out.println("coucou11"+e); 
+            System.out.println(e); 
         }
     }//GEN-LAST:event_ValiderButtonActionPerformed
 

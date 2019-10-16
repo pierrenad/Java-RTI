@@ -13,7 +13,8 @@ import java.awt.event.KeyEvent;
  */
 public class LoginToBD extends javax.swing.JFrame {
 
-    GestionBD gbd = new GestionBD(); 
+    AccessBD abd = new AccessBD(); 
+    GestionBD gbd = abd.gbd; // reprend le GestionBD de AccessBD pour faire la requete dans abd en etant connecté sur le bon gbd 
     
     /**
      * Creates new form AccesBDWindow
@@ -137,7 +138,6 @@ public class LoginToBD extends javax.swing.JFrame {
         // Valide la requete et cherche dans la BD
         try { 
             gbd.connection("jdbc:mysql://localhost:3306/"+nomBD.getText()+"?serverTimezone=UTC", login.getText(), password.getText()); //?serverTimezone=UTC car on avait exception d'heure paris - madrid 
-            AccessBD abd = new AccessBD(); 
             abd.setVisible(true); 
             
             this.dispose(); 
