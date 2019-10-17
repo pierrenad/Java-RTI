@@ -13,7 +13,7 @@ import java.sql.*;
  */
 public class GestionBD {
     protected Connection con = null;
-    protected PreparedStatement pstate = null; 
+    protected Statement state = null; 
     protected ResultSet resSet = null; 
     private AccessBD abd;
 
@@ -30,8 +30,8 @@ public class GestionBD {
     }
     
     public void requete(String req) throws Exception {
-        pstate = con.prepareStatement(req); 
-        resSet = pstate.executeQuery(); 
+        state = con.createStatement(); 
+        resSet = state.executeQuery(req); 
         afficheTable(); 
     }
     

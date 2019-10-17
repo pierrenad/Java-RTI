@@ -101,7 +101,6 @@ public class AccessBD extends javax.swing.JFrame {
         // lance la requete 
         try {
             gbd.requete(TextCommande.getText()); 
-            
         } catch(Exception e) {
             System.out.println(e); 
         }
@@ -117,7 +116,7 @@ public class AccessBD extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             gbd.con.close(); 
-            gbd.pstate.close();
+            gbd.state.close();
             gbd.resSet.close(); 
         } catch (Exception ex) {} 
     }//GEN-LAST:event_formWindowClosing

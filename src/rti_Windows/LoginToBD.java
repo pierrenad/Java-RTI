@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package rti_Windows;
 
 import java.awt.event.KeyEvent;
 
 /**
  *
- * @author Pierre
+ * @author Pierre 
  */
 public class LoginToBD extends javax.swing.JFrame {
 
