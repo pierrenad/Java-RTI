@@ -11,36 +11,30 @@ package rti_partie2;
  */
 import java.util.*; 
 import rti_interface.*;
-import rti_Windows.*;
 
-public class ListeTaches implements SourceTache{
+public class ListeTaches implements SourceTache {
     private LinkedList listeTaches;
-    public ListeTaches()
-    {
+    
+    public ListeTaches() {
         listeTaches = new LinkedList();
-    }   
-    public synchronized Runnable getTache() throws InterruptedException
-    {
-        System.out.println("getTache avant wait");
-        while (!existTaches()) wait();
-            return (Runnable)listeTaches.remove();
+    } 
+    
+    @Override
+    public synchronized Runnable getTache() throws InterruptedException {
+        System.out.println("<ListeTaches> getTache avant wait");
+        while (!existTache()) wait();
+        return (Runnable)listeTaches.remove();
     }  
     
-    public synchronized boolean existTaches()
-    {
-        return !listeTaches.isEmpty();
-    }
-    public synchronized void recordTache (Runnable r)
-    {
+    @Override
+    public synchronized void recordTache (Runnable r) {
         listeTaches.addLast(r);
-        System.out.println("ListeTaches : tache dans la file");
+        System.out.println("<ListeTaches> tache dans la file");
         notify();
     } 
 
     @Override
     public boolean existTache() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return !listeTaches.isEmpty();
     }
-    
-    
 }

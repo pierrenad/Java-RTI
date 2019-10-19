@@ -5,17 +5,31 @@
  */
 package rti_Windows;
 
+import java.io.ObjectInputStream;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+import network.Network;
+import protocoles.ReponseProtocol;
+import protocoles.RequeteProtocol;
+
 /**
  *
  * @author tiboo
  */
 public class CustomerWindow extends javax.swing.JFrame {
 
+    private Socket cSock;
+    private ObjectInputStream ois; 
+    
     /**
      * Creates new form CustomerWindow
      */
     public CustomerWindow() {
         initComponents();
+    }
+    public CustomerWindow(Socket s) {
+        initComponents(); 
+        cSock = s; 
     }
 
     /**
@@ -27,92 +41,177 @@ public class CustomerWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        requeteTxt = new javax.swing.JTextField();
+        validerButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
+        buyTicketButton = new javax.swing.JButton();
+        verfiBookingButton = new javax.swing.JButton();
+        nbrPassagerTxt = new javax.swing.JTextField();
+        reservationTxt = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Client");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        validerButton.setText("Valider");
 
-        jTextField1.setText("jTextField1");
+        jLabel1.setText("Nombre de passagers :");
 
-        jButton1.setText("jButton1");
+        jLabel2.setText("Réservation :");
 
-        jLabel1.setText("jLabe1");
+        closeButton.setText("Close");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("jLabel2");
+        buyTicketButton.setText("Buy Ticket");
+        buyTicketButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyTicketButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
-
-        jButton3.setText("jButton2");
-
-        jButton4.setText("jButton2");
+        verfiBookingButton.setText("Verif. Booking");
+        verfiBookingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verfiBookingButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(jButton1))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(reservationTxt)
+                                    .addComponent(nbrPassagerTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(verfiBookingButton)
+                                .addGap(12, 12, 12)
+                                .addComponent(buyTicketButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(closeButton))
+                            .addComponent(requeteTxt)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(152, 152, 152)
+                        .addComponent(validerButton)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addComponent(jScrollPane1))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(reservationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nbrPassagerTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(verfiBookingButton)
+                    .addComponent(buyTicketButton)
+                    .addComponent(closeButton))
+                .addGap(30, 30, 30)
+                .addComponent(requeteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(validerButton)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void verfiBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verfiBookingButtonActionPerformed
+        // TODO add your handling code here:
+        String mess = reservationTxt.getText() +"#"+ nbrPassagerTxt.getText();
+        RequeteProtocol requete = new RequeteProtocol(RequeteProtocol.VERIF_BOOKING,mess);
+        Network n = new Network();
+        cSock = n.Init(); 
+        n.SendRequest(cSock,requete);
+        ReponseProtocol reponse = null;
+        try {
+            ois = new ObjectInputStream(cSock.getInputStream());
+            reponse = (ReponseProtocol)ois.readObject(); 
+            if(reponse.getCode()==ReponseProtocol.RESERV_OK) {
+                JOptionPane.showMessageDialog(null, "Votre réservation est juste", "Resultat réservation", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Votre réservation est incorecte", "Resultat réservation", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(Exception e) {
+            System.err.println("<CustomerWindow> " + e.getMessage()); 
+        } 
+    }//GEN-LAST:event_verfiBookingButtonActionPerformed
+
+    private void buyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyTicketButtonActionPerformed
+        // TODO add your handling code here:
+        Buy_ticket_window btw=new Buy_ticket_window(this);
+        btw.setVisible(true);
+    }//GEN-LAST:event_buyTicketButtonActionPerformed
+
+    public void AchatOk(Buy_ticket_window btw)
+    {
+        String mess = (btw.NomTitu.getText()+"#"+btw.PrenomTitu.getText()+"#"+btw.MatriculeTitu.getText()+"#");
+        if(btw.NewCli.isSelected()) {
+            mess+=("true"+"#"+btw.JTFemailtitu.getText()+"#"+btw.JTFadressetitu.getText()+"#"+btw.JTFpaystitu.getText()+"#");
+        }
+        else {
+            mess+=("false"+"#"+"null"+"#"+"null"+"#"+"null"+"#");
+        }
+        mess+=((int)btw.NbPassagerSpinner.getValue()+"#");
+        for(int i=0;i<(int)btw.NbPassagerSpinner.getValue();i++) {
+            mess+=(btw.tabJTFnom.get(i).getText()+"#"+btw.tabJTFprenom.get(i).getText()+"#");
+            
+            if(btw.chknpassager.get(i).isSelected()) {
+                 mess+=("true"+"#"+btw.tabJTFadresse.get(i).getText()+"#"+btw.tabJTFpays.get(i).getText()+"#");
+            }
+            else {
+                mess+=("false"+"#"+"null"+"#"+"null"+"#");
+            }
+        }
+        RequeteProtocol requete = new RequeteProtocol(RequeteProtocol.BUY_TICKET,mess);
+        Network n = new Network();
+        cSock = n.Init(); 
+        n.SendRequest(cSock,requete);
+        
+        ReponseProtocol reponse = null;
+        try {
+            ois = new ObjectInputStream(cSock.getInputStream());
+            reponse = (ReponseProtocol)ois.readObject();
+            
+            if(reponse.getCode()==ReponseProtocol.ACHAT_OK) {
+                JOptionPane.showMessageDialog(null, "Votre achat est bon", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Votre achat est incorrect", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        catch(Exception e) {
+            System.err.println("<AchatOk> " + e.getMessage());
+        } 
+    }
+    
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_closeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,14 +249,14 @@ public class CustomerWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton buyTicketButton;
+    private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nbrPassagerTxt;
+    private javax.swing.JTextField requeteTxt;
+    private javax.swing.JTextField reservationTxt;
+    private javax.swing.JButton validerButton;
+    private javax.swing.JButton verfiBookingButton;
     // End of variables declaration//GEN-END:variables
 }
