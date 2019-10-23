@@ -5,12 +5,15 @@
  */
 package rti_Windows;
 
+import CHECKCARP.ReponseProtocolCard;
+import CHECKCARP.RequeteProtocolCard;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import javax.swing.JOptionPane;
 import network.Network;
-import protocoles.ReponseProtocol;
-import protocoles.RequeteProtocol;
+import CHECKINAP.ReponseProtocol;
+import CHECKINAP.RequeteProtocol;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -41,8 +44,6 @@ public class CustomerWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        requeteTxt = new javax.swing.JTextField();
-        validerButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         closeButton = new javax.swing.JButton();
@@ -53,8 +54,6 @@ public class CustomerWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Client");
-
-        validerButton.setText("Valider");
 
         jLabel1.setText("Nombre de passagers :");
 
@@ -86,29 +85,23 @@ public class CustomerWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(reservationTxt)
-                                    .addComponent(nbrPassagerTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(verfiBookingButton)
-                                .addGap(12, 12, 12)
-                                .addComponent(buyTicketButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(closeButton))
-                            .addComponent(requeteTxt)))
+                            .addComponent(reservationTxt)
+                            .addComponent(nbrPassagerTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(validerButton)))
+                        .addGap(12, 12, 12)
+                        .addComponent(verfiBookingButton)
+                        .addGap(12, 12, 12)
+                        .addComponent(buyTicketButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(closeButton)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,11 +120,7 @@ public class CustomerWindow extends javax.swing.JFrame {
                     .addComponent(verfiBookingButton)
                     .addComponent(buyTicketButton)
                     .addComponent(closeButton))
-                .addGap(30, 30, 30)
-                .addComponent(requeteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(validerButton)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -161,43 +150,96 @@ public class CustomerWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_verfiBookingButtonActionPerformed
 
     private void buyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyTicketButtonActionPerformed
-        // TODO add your handling code here:
-        Buy_ticket_window btw=new Buy_ticket_window(this);
+        RequeteProtocol requete = new RequeteProtocol(RequeteProtocol.LISTE_CLIENTS,"");
+        Network n = new Network();
+        cSock = n.Init(); 
+        n.SendRequest(cSock,requete);
+        ReponseProtocol reponse = null;
+        try {
+            ois = new ObjectInputStream(cSock.getInputStream());           
+            reponse = (ReponseProtocol)ois.readObject(); 
+        }
+         catch(Exception e) {
+            System.err.println("<CustomerWindow> " + e.getMessage()); 
+         }
+            
+        Buy_ticket_window btw=new Buy_ticket_window(this,reponse.getCharge());
         btw.setVisible(true);
     }//GEN-LAST:event_buyTicketButtonActionPerformed
 
     public void AchatOk(Buy_ticket_window btw)
     {
-        String mess = (btw.NomTitu.getText()+"#"+btw.PrenomTitu.getText()+"#"+btw.MatriculeTitu.getText()+"#");
-        if(btw.NewCli.isSelected()) {
-            mess+=("true"+"#"+btw.JTFemailtitu.getText()+"#"+btw.JTFadressetitu.getText()+"#"+btw.JTFpaystitu.getText()+"#");
+        CardWindow cw = new CardWindow(this,btw);
+        cw.setVisible(true); 
+    }
+    
+    public void CarteOk(CardWindow cw,Buy_ticket_window btw)
+    {
+        // verif carte et code 
+        String mess = (cw.numCarte.getText()+"#"+cw.codeCarte.getText()+"#"); 
+        RequeteProtocolCard req = new RequeteProtocolCard(RequeteProtocolCard.CHECK_CARD,mess); 
+        Network n = new Network();
+        cSock = n.InitOnDemand(); 
+        n.SendRequest(cSock,req); 
+        
+        ReponseProtocolCard rep = null;
+        try {
+            ois = new ObjectInputStream(cSock.getInputStream());
+            rep = (ReponseProtocolCard)ois.readObject();
+            
+            if(rep.getCode()==ReponseProtocolCard.CODEPASOK) {
+                JOptionPane.showMessageDialog(null, "Carte ou code incorrect", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
+                AchatOk(btw); // si mauvais on refait 
+            }
+            else if(rep.getCode()==ReponseProtocolCard.CARTEPASOK) { 
+                JOptionPane.showMessageDialog(null, "Crédit insuffisant", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
+                AchatOk(btw); 
+            } 
+            else if(rep.getCode()==ReponseProtocolCard.CARTEOK) {
+                JOptionPane.showMessageDialog(null, "Achat effectué", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
+                CarteOkSuite(cw,btw);
+            }
         }
-        else {
-            mess+=("false"+"#"+"null"+"#"+"null"+"#"+"null"+"#");
+        catch(Exception e) {
+            System.err.println("<CartOK> " + e.getMessage());
+        } 
+    }
+    public void CarteOkSuite(CardWindow cw,Buy_ticket_window btw)
+    {
+        StringTokenizer strtok = new StringTokenizer(""+btw.CBClient.getSelectedItem()," ");
+        String mess;
+        mess=(btw.CBTraversee.getSelectedItem()+"#");
+        
+        String temp=strtok.nextToken();
+        
+        if(temp.equals("NEW"))
+        {
+            mess+=("true"+"#"+strtok.nextToken()+"#"+strtok.nextToken()+"#"+btw.MatriculeTitu.getText()+"#");  
+            mess+=(strtok.nextToken()+"#"+strtok.nextToken()+"#"+strtok.nextToken()+"#");
+        }
+        else
+        {
+            mess +=("false"+"#"+btw.CBClient.getSelectedItem()+"#"+btw.MatriculeTitu.getText()+"#");
         }
         mess+=((int)btw.NbPassagerSpinner.getValue()+"#");
-        for(int i=0;i<(int)btw.NbPassagerSpinner.getValue();i++) {
-            mess+=(btw.tabJTFnom.get(i).getText()+"#"+btw.tabJTFprenom.get(i).getText()+"#");
-            
+        /*for(int i=0;i<(int)btw.NbPassagerSpinner.getValue();i++) {         
             if(btw.chknpassager.get(i).isSelected()) {
-                 mess+=("true"+"#"+btw.tabJTFadresse.get(i).getText()+"#"+btw.tabJTFpays.get(i).getText()+"#");
+                 mess+=("true"+"#"+btw.tabJTFnom.get(i).getText()+"#"+btw.tabJTFprenom.get(i).getText()+"#"+btw.tabJTFadresse.get(i).getText()+"#"+btw.tabJTFpays.get(i).getText()+"#");
             }
             else {
-                mess+=("false"+"#"+"null"+"#"+"null"+"#");
+               // mess +=("false"+"#"+btw.CBClient.getSelectedItem()+"#");
             }
-        }
+        }*/
         RequeteProtocol requete = new RequeteProtocol(RequeteProtocol.BUY_TICKET,mess);
-        Network n = new Network();
+        Network n = new Network(); 
         cSock = n.Init(); 
         n.SendRequest(cSock,requete);
-        
         ReponseProtocol reponse = null;
         try {
             ois = new ObjectInputStream(cSock.getInputStream());
             reponse = (ReponseProtocol)ois.readObject();
-            
             if(reponse.getCode()==ReponseProtocol.ACHAT_OK) {
-                JOptionPane.showMessageDialog(null, "Votre achat est bon", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Votre achat est bon\nVous pouvez vous mettre dans la file"+reponse.getCharge(), "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
                 JOptionPane.showMessageDialog(null, "Votre achat est incorrect", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
@@ -210,7 +252,26 @@ public class CustomerWindow extends javax.swing.JFrame {
     
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         // TODO add your handling code here:
+        RequeteProtocol requete = new RequeteProtocol(RequeteProtocol.CLOSE,"");
+        Network n = new Network();
+        cSock = n.Init(); 
+        n.SendRequest(cSock,requete);
         
+        ReponseProtocol reponse = null;
+        try {
+            ois = new ObjectInputStream(cSock.getInputStream());
+            reponse = (ReponseProtocol)ois.readObject();
+            
+            /*if(reponse.getCode()==ReponseProtocol.ACHAT_OK) {
+                JOptionPane.showMessageDialog(null, "Votre achat est bon", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Votre achat est incorrect", "Resultat achat", JOptionPane.INFORMATION_MESSAGE);
+            }*/
+        }
+        catch(Exception e) {
+            System.err.println("<Close> " + e.getMessage()); 
+        } 
     }//GEN-LAST:event_closeButtonActionPerformed
 
     /**
@@ -254,9 +315,7 @@ public class CustomerWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField nbrPassagerTxt;
-    private javax.swing.JTextField requeteTxt;
     private javax.swing.JTextField reservationTxt;
-    private javax.swing.JButton validerButton;
     private javax.swing.JButton verfiBookingButton;
     // End of variables declaration//GEN-END:variables
 }

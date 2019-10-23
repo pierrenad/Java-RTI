@@ -18,14 +18,16 @@ public class MainProgram {
     
     public static void main(String[] args) {
         int port = 50000;
+        int portC = 50001; 
         try {
             FileInputStream in = new FileInputStream("donnees.properties"); 
             Properties data = new Properties();
             data.load(in);
             
             port = Integer.parseInt((String) data.getProperty("port"));
+            portC = Integer.parseInt((String) data.getProperty("portC"));
         } catch (Exception e) {
-            System.out.println("<Main> " + e.getMessage());
+            System.err.println("<Main> " + e.getMessage());
         }
         
         ListeTaches lt = new ListeTaches(); 
@@ -37,5 +39,9 @@ public class MainProgram {
         
         LoginWindow logWin = new LoginWindow(); 
         logWin.setVisible(true); 
+        
+        ServerALaDemande servD = new ServerALaDemande(portC, lt, ls); 
+        Thread thd = new Thread(servD); 
+        thd.start(); 
     }
 }

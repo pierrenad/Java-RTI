@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package protocoles;
+package CHECKINAP;
 
 import java.io.Serializable;
 import rti_interface.Reponse;
@@ -22,6 +22,8 @@ public class ReponseProtocol implements Reponse, Serializable {
     
     public static int ACHAT_OK = 104;
     public static int ACHAT_PASOK = 105; 
+        
+    public static int LISTE_OK = 106;
     
     private int codeRet;
     private String charge; 

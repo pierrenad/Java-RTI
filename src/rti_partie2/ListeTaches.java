@@ -21,7 +21,7 @@ public class ListeTaches implements SourceTache {
     
     @Override
     public synchronized Runnable getTache() throws InterruptedException {
-        System.out.println("<ListeTaches> getTache avant wait");
+        System.out.println("<ListeTaches> getTache");
         while (!existTache()) wait();
         return (Runnable)listeTaches.remove();
     }  

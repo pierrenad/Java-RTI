@@ -19,6 +19,7 @@ import rti_interface.ConsoleServeur;
 public class LogServeur implements ConsoleServeur {
     
     private final static String fichierLog = "fichierLog.txt"; 
+    public ServerWindow servWin; 
     
     public LogServeur() {
     }
@@ -32,6 +33,7 @@ public class LogServeur implements ConsoleServeur {
             fw.write(ligne);
             fw.write(System.getProperty("line.separator"));
             fw.close();
+            servWin.LogServ.append(ligne+"\n");
         } catch (Exception ex) { 
             System.err.println("<LogServeur> Ajout ligne dans log : " + ex.getMessage()); 
         }
@@ -46,7 +48,7 @@ public class LogServeur implements ConsoleServeur {
             fw.write(ligne);
             fw.write(System.getProperty("line.separator"));
             fw.close();
-            sw.LogServ.append(ligne); 
+            sw.LogServ.append(ligne+"\n"); 
         } catch (Exception ex) { 
             System.err.println("<LogServeur> Ajout ligne dans log : " + ex.getMessage()); 
         }

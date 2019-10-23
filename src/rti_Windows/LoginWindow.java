@@ -5,6 +5,8 @@
  */
 package rti_Windows;
 
+import CHECKINAP.RequeteProtocol;
+import CHECKINAP.ReponseProtocol;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,10 +14,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.Properties;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import network.Network;
-import protocoles.*;
 
 /**
  *
@@ -26,7 +26,6 @@ public class LoginWindow extends javax.swing.JFrame {
     private ObjectInputStream ois;
     private Socket cSock; 
     private CustomerWindow custWindow; 
-    private int port; 
     
     private static Properties hashtable = new Properties();
     public Properties getHashtable(){return hashtable;}
@@ -81,7 +80,7 @@ public class LoginWindow extends javax.swing.JFrame {
         annulerButton = new javax.swing.JButton();
         pwdTxt = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
 
         loginTxt.setText("admin");
@@ -183,7 +182,7 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         }
         catch (Exception e) { 
-            System.err.println(e.getMessage()); 
+            System.err.println("<LoginWindow> " + e.getMessage()); 
         }
     }//GEN-LAST:event_validerButtonActionPerformed
 

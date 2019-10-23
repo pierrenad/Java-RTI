@@ -12,10 +12,11 @@ package rti_interface;
 
 import java.io.ObjectInputStream;
 import java.net.*; 
+import log.LogServeur;
 
 public interface Requete
 {
  // Ce qui va être exécuté doit connaître la socket du client distant
  // ainsi que le GUI qui affiche les traces
- public Runnable createRunnable (Socket s, ObjectInputStream ois, ConsoleServeur cs); 
+ public Runnable createRunnable (Socket s, ObjectInputStream ois, LogServeur cs); 
 } 

@@ -32,6 +32,7 @@ public class ThreadServer extends Thread {
     {
         ServerWindow servWin = new ServerWindow(); 
         servWin.setVisible(true); 
+        logServ.servWin = servWin; 
         
         try {
            SSocket = new ServerSocket(port);
@@ -41,8 +42,9 @@ public class ThreadServer extends Thread {
            System.exit(1);
         }
         // Démarrage du pool de threads
+        logServ.TraceEvenements("Démarrage pool de thread # thread serveur"); 
         for (int i=0; i<maxClient; i++) { 
-           ThreadClient th = new ThreadClient (tachesAExecuter, "Thread du pool n°" + String.valueOf(i));
+           ThreadClient th = new ThreadClient (tachesAExecuter, "Thread du pool n°" + String.valueOf(i), logServ); 
            th.start();
         } 
 
@@ -50,9 +52,10 @@ public class ThreadServer extends Thread {
         Socket CSocket = null;
         while (!isInterrupted()) {
             try {
-                System.out.println("************ Serveur en attente");
+                System.out.println("<ThreadServer> ************ Serveur en attente");
+                logServ.TraceEvenements("************ Serveur en attente # thread serveur");
                 CSocket = SSocket.accept();
-                logServ.addLog(CSocket.getRemoteSocketAddress().toString()+"#accept#thread serveur", servWin);
+                logServ.TraceEvenements(CSocket.getRemoteSocketAddress().toString()+" # accept # thread serveur");
             }
             catch (IOException e) {
                 System.err.println("<ThreadServer> Erreur d'accept : " + e.getMessage()); 
@@ -65,19 +68,22 @@ public class ThreadServer extends Thread {
                 ois = new ObjectInputStream(CSocket.getInputStream());
                 req = (Requete)ois.readObject();
                 System.out.println("<ThreadServer> Requete lue par le serveur");
+                logServ.TraceEvenements("Requete lue par le serveur # thread serveur");
             }
             catch (Exception e) {
                 System.err.println("<ThreadServer> Erreur " + e.getMessage()); 
             } 
 
-            System.out.println("serv1");
             Runnable travail = req.createRunnable(CSocket, ois, logServ);
             if (travail != null) {
                 tachesAExecuter.recordTache(travail);
                 System.out.println("<ThreadServer> Travail mis dans la file");
+                logServ.TraceEvenements("Ajout d'un travail dans la file # thread serveur");
             }
-            else 
+            else {
                 System.out.println("<ThreadServer> Pas de mise en file");
+                logServ.TraceEvenements("Pas de mise en file # thread serveur");
+            }
         }
     }
 } 
