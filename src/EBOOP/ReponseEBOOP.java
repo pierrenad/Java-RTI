@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CHECKINAP;
+package EBOOP;
 
 import java.io.Serializable;
 import rti_interface.Reponse;
@@ -12,8 +12,7 @@ import rti_interface.Reponse;
  *
  * @author Pierre
  */
-public class ReponseProtocol implements Reponse, Serializable {
-    
+public class ReponseEBOOP implements Reponse, Serializable {
     public static int LOGIN_OK = 100;
     public static int LOGIN_PASOK = 101;
     
@@ -24,9 +23,12 @@ public class ReponseProtocol implements Reponse, Serializable {
     public static int ACHAT_PASOK = 105; 
         
     public static int LISTE_OK = 106;
+    public static int CLOSE = 107;
     
-    public static int CLIENT_FOUND = 107; 
-    public static int CLIENT_NOTFOUND = 108; 
+    public static int CLIENT_FOUND = 108; 
+    public static int CLIENT_NOTFOUND = 109; 
+    
+    public static int AJOUT_OK = 110; 
     
     private int codeRet;
     private String charge; 
@@ -35,7 +37,7 @@ public class ReponseProtocol implements Reponse, Serializable {
     public void setCharge(String s) { charge = s; } 
     public String getCharge() { return charge; } 
     
-    public ReponseProtocol(int c, String str) {
+    public ReponseEBOOP(int c, String str) {
         codeRet = c;
         setCharge(str); 
     }

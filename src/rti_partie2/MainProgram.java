@@ -17,8 +17,8 @@ import rti_Windows.LoginWindow;
 public class MainProgram {
     
     public static void main(String[] args) {
-        int port = 50000;
-        int portC = 50001; 
+        int port = 59000;
+        int portC = 59001; 
         try {
             FileInputStream in = new FileInputStream("donnees.properties"); 
             Properties data = new Properties();
@@ -37,8 +37,8 @@ public class MainProgram {
         Thread th = new Thread(serv); 
         th.start(); 
         
-        LoginWindow logWin = new LoginWindow(); 
-        logWin.setVisible(true); 
+        /*LoginWindow logWin = new LoginWindow(); // a lancer manuellement 
+        logWin.setVisible(true); */
         
         ServerALaDemande servD = new ServerALaDemande(portC, lt, ls); 
         Thread thd = new Thread(servD); 

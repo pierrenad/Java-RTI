@@ -17,7 +17,7 @@ public class ThreadServer extends Thread {
     public ThreadServer(int p, ListeTaches lt, LogServeur ls) { 
        port = p; tachesAExecuter = lt; logServ = ls;
 
-       try { 
+        try { 
             FileInputStream in = new FileInputStream("donnees.properties");
             Properties data = new Properties();
             data.load(in);

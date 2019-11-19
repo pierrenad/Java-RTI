@@ -31,6 +31,9 @@ public class RequeteProtocol implements Requete, Serializable {
     public static final int BUY_TICKET = 3;
     public static final int CLOSE = 4;
     public static final int LISTE_CLIENTS = 5;
+    public static final int LOGIN_WEB = 6; 
+    
+    public static final long serialVersionUID = 683388106844655395L; // Pas touche 
     
     private int type;
     private Socket socketCli;
@@ -91,7 +94,101 @@ public class RequeteProtocol implements Requete, Serializable {
                     requeteListeClients(s, ls);
                 }
             }; 
+        else if (type==LOGIN_WEB)
+            return new Runnable()
+            {
+                public void run()
+                {
+                    LoginWeb(s, ls); 
+                }
+            }; 
         else return null; 
+    }
+    
+    private void LoginWeb(Socket sock, LogServeur ls) { 
+        GestionBD gdb = new GestionBD();
+        boolean ClientFound = false; 
+        
+        //StringTokenizer st = new StringTokenizer(this.charge, "#");
+        ObjectOutputStream oos;
+        ReponseProtocol rep; 
+        
+        try { 
+            gdb.connection("HappyFerryDB","user","user"); 
+            System.out.println("<p>Connection to HappyFerryDB established<p>"); 
+            
+            String numCli = this.charge; 
+            ResultSet resSet = gdb.requete("select * from voyageurs;");
+            while(resSet.next()) {
+                //System.out.println(resSet.getString(2) + " ; " + resSet.getString(3) + " ; " + resSet.getString(4) + " ; " + resSet.getString(6)); 
+                if((numCli.equals(resSet.getString(1)))) { // si nom/prenom correspondent 
+                    ClientFound = true; 
+                    break; 
+                } 
+            }
+            if(ClientFound) {
+                rep = new ReponseProtocol(ReponseProtocol.CLIENT_FOUND, resSet.getString(1)+"#"+resSet.getString(2)+"#"+resSet.getString(3)+"#"+resSet.getString(4)+"#"+resSet.getString(6));
+                try {
+                    oos = new ObjectOutputStream(sock.getOutputStream());
+                    oos.writeObject(rep); 
+                    oos.flush();
+                } 
+                catch (IOException e) {
+                    System.err.println("<RequeteProtocole> Erreur réseau "+  e.getMessage());
+                    rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
+
+                    try {
+                        oos = new ObjectOutputStream(sock.getOutputStream());
+                        oos.writeObject(rep);
+                        oos.flush();
+                    } catch (IOException ex) { 
+                        Logger.getLogger(RequeteProtocol.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                }
+            }
+            else {
+                rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK, "");
+                try {
+                    oos = new ObjectOutputStream(sock.getOutputStream());
+                    oos.writeObject(rep); 
+                    oos.flush();
+                } 
+                catch (IOException e) {
+                    System.err.println("<RequeteProtocole> Erreur réseau "+  e.getMessage());
+                    rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
+
+                    try {
+                        oos = new ObjectOutputStream(sock.getOutputStream());
+                        oos.writeObject(rep);
+                        oos.flush();
+                    } catch (IOException ex) { 
+                        Logger.getLogger(RequeteProtocol.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                }
+            }
+        }
+        catch(Exception e) {
+            rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK, "");
+            try {
+                oos = new ObjectOutputStream(sock.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException ex) {
+                System.err.println("<RequeteProtocole> Erreur réseau "+  e.getMessage());
+                rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
+
+                try {
+                    oos = new ObjectOutputStream(sock.getOutputStream());
+                    oos.writeObject(rep);
+                    oos.flush();
+                } catch (IOException iex) { 
+                    Logger.getLogger(RequeteProtocol.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }
+            System.out.println("<doGet> " + e.getMessage());
+            System.out.println("<p>Connection to HappyFerryDB not established<p>"); 
+        } 
     }
     
     private boolean requeteLogin(Socket sock, LogServeur ls) { 
@@ -320,6 +417,31 @@ public class RequeteProtocol implements Requete, Serializable {
         }
         catch(Exception e) { 
             System.err.println("<BuyTicket> " + e.getMessage());
+        } 
+    }
+    
+    private void requeteListeTraversee(Socket s, LogServeur ls)
+    {
+        GestionBD gdb = new GestionBD();
+        ReponseProtocol rep;
+        String mess = new String();
+        try{
+            gdb.connection("HappyFerryDB","user","user"); 
+            ResultSet rs=gdb.ListeTraversees();
+            while(rs.next()) 
+            {
+                mess+=(rs.getString(1)+'#'+rs.getString(2)+'#'+rs.getString(3)+'#'+rs.getDate(4)+'#'+rs.getFloat(5)+'#'+rs.getInt(6)+'#');
+            }
+            mess+=("end"+"#");
+
+            rep = new ReponseProtocol(ReponseProtocol.LISTE_OK,mess);
+            ObjectOutputStream oos;
+            oos = new ObjectOutputStream(s.getOutputStream());
+            oos.writeObject(rep);
+            oos.flush();
+        }
+        catch(Exception e) { 
+            System.err.println("ListeClients " + e.getMessage());
         } 
     }
     

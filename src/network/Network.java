@@ -22,36 +22,36 @@ public class Network {
     
     public Socket Init() {
         Socket cSock;
-        String adresse = "";
-        int port = 50000; 
-        
-        try {
+        String adresse = "192.168.0.28";
+        int port = 59000; 
+
+        /*try {
             FileInputStream in = new FileInputStream("donnees.properties");
             Properties data = new Properties();
             data.load(in);
             adresse = (String)data.get("ip");
             port = Integer.parseInt((String) data.getProperty("port"));
         } catch (Exception e) { 
-            System.err.println(e.getMessage()); 
-        }
-        
+            System.err.println("<Network-Init> " + e.getMessage()); 
+        }*/
+
         cSock = null;
         try {
             cSock = new Socket(adresse, port); 
         }
         catch (Exception e) {
-            System.err.println("<Network-Init> Erreur ! Aucune correspondance serveur trouvée : "+ e.getMessage()); 
+            System.err.println("<Network-Init> Erreur ! Aucune correspondance serveur trouvée : " + e.getMessage()); 
         }
-        
+
         return cSock;
     }
     
     public Socket InitOnDemand() {
         Socket cSock;
-        String adresse = null;
-        int port = 50001; 
-        
-        try {
+        String adresse = "192.168.0.28";
+        int port = 59001; 
+                
+        /*try {
             FileInputStream in = new FileInputStream("donnees.properties");
             Properties data = new Properties();
             data.load(in);
@@ -59,7 +59,7 @@ public class Network {
             port = Integer.parseInt((String) data.getProperty("portC"));
         } catch (Exception e) { 
             System.err.println(e.getMessage()); 
-        }
+        }*/
         
         cSock = null;
         try {

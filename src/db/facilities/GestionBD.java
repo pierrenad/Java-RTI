@@ -25,9 +25,42 @@ public class GestionBD {
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+bd+"?serverTimezone=UTC", log, pwd); 
     }
     
-    public synchronized void requete(String req) throws Exception {
-        state = con.createStatement(); 
-        resSet = state.executeQuery(req); 
+    public synchronized ResultSet requete(String req)
+    {
+        resSet = null;
+        try {
+            PreparedStatement requete = con.prepareStatement(req);
+            
+            resSet = requete.executeQuery();
+            return resSet;
+           
+                            
+        } catch (SQLException ex) {
+            System.err.println("<requete> " + ex.getMessage());
+        }
+        return resSet;
+    }
+    
+    public synchronized boolean CheckLoginWeb(String reservation, String nom) {
+        try {
+            PreparedStatement requete = con.prepareStatement("select v.nom_voyageur " +
+            "from reservations r " +
+            "INNER JOIN voyageurs v " +
+            "WHERE r.id_reservation LIKE ?"); 
+            requete.setString(1, reservation);
+
+            ResultSet rs = requete.executeQuery();
+            rs.next();
+            if(nom.equals(rs.getString(1)))
+                return true;
+
+            else
+                return false;
+
+        } catch (SQLException ex) {
+            System.err.println("<CheckReservation> " + ex.getMessage());
+            return false;
+        } 
     }
     
     public synchronized ResultSet CheckReservation(String reservation, int nbpass) {
@@ -51,6 +84,7 @@ public class GestionBD {
     }
     
     public synchronized String AjoutClients(String[]client,String titu) {
+        System.out.println("client[0} : " + client[0]);
         try{
             if(titu==null) {
                 PreparedStatement num = con.prepareStatement("SELECT count(num_cli_voyageur) " +
@@ -102,9 +136,9 @@ public class GestionBD {
         } 
     }
     
-     public synchronized ResultSet ListeTraversees() {
+    public synchronized ResultSet ListeTraversees() {
         try {
-            PreparedStatement requete = con.prepareStatement("SELECT id_traversee, port_dep_traversee, port_dest_traversee, depart_traversee "+
+            PreparedStatement requete = con.prepareStatement("SELECT id_traversee, port_dep_traversee, port_dest_traversee, depart_traversee, prix_traversee, nbtickets_traversee "+
             "FROM Traversees;"); 
             ResultSet rs = requete.executeQuery();
             return rs;

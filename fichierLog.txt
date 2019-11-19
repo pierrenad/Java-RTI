@@ -4030,3 +4030,675 @@
 22/10/2019 10:48:55 > ************ Serveur en attente # thread serveur
 22/10/2019 10:48:55 > Logged # RequeteProtocole
 22/10/2019 10:48:55 > Avant getTache # thread client
+18/11/2019 13:17:53 > ************ Serveur en attente # server a demande
+18/11/2019 13:17:53 > Démarrage pool de thread # thread serveur
+18/11/2019 13:17:53 > ************ Serveur en attente # thread serveur
+18/11/2019 13:17:53 > Avant getTache # thread client
+18/11/2019 13:17:53 > Avant getTache # thread client
+18/11/2019 13:17:53 > Avant getTache # thread client
+18/11/2019 13:22:27 > Démarrage pool de thread # thread serveur
+18/11/2019 13:22:27 > ************ Serveur en attente # server a demande
+18/11/2019 13:22:27 > Avant getTache # thread client
+18/11/2019 13:22:27 > ************ Serveur en attente # thread serveur
+18/11/2019 13:22:27 > Avant getTache # thread client
+18/11/2019 13:22:27 > Avant getTache # thread client
+18/11/2019 13:22:28 > /10.59.22.82:51889 # accept # thread serveur
+18/11/2019 13:22:28 > Requete lue par le serveur # thread serveur
+18/11/2019 13:22:28 > Ajout d'un travail dans la file # thread serveur
+18/11/2019 13:22:28 > Run de tachesEnCours # thread client
+18/11/2019 13:22:28 > Logged # RequeteProtocole
+18/11/2019 13:22:28 > ************ Serveur en attente # thread serveur
+18/11/2019 13:22:28 > Avant getTache # thread client
+18/11/2019 13:32:06 > ************ Serveur en attente # server a demande
+18/11/2019 13:32:06 > Démarrage pool de thread # thread serveur
+18/11/2019 13:32:06 > Avant getTache # thread client
+18/11/2019 13:32:06 > ************ Serveur en attente # thread serveur
+18/11/2019 13:32:06 > Avant getTache # thread client
+18/11/2019 13:32:06 > Avant getTache # thread client
+18/11/2019 13:32:07 > /10.59.22.82:51958 # accept # thread serveur
+18/11/2019 13:32:07 > Requete lue par le serveur # thread serveur
+18/11/2019 13:32:07 > Ajout d'un travail dans la file # thread serveur
+18/11/2019 13:32:07 > Run de tachesEnCours # thread client
+18/11/2019 13:32:07 > ************ Serveur en attente # thread serveur
+18/11/2019 13:32:07 > Logged # RequeteProtocole
+18/11/2019 13:32:07 > Avant getTache # thread client
+19/11/2019 09:08:22 > ************ Serveur en attente # server a demande
+19/11/2019 09:08:22 > Démarrage pool de thread # thread serveur
+19/11/2019 09:08:22 > Avant getTache # thread client
+19/11/2019 09:08:22 > ************ Serveur en attente # thread serveur
+19/11/2019 09:08:22 > Avant getTache # thread client
+19/11/2019 09:08:22 > Avant getTache # thread client
+19/11/2019 10:33:56 > Démarrage pool de thread # thread serveur
+19/11/2019 10:33:57 > Avant getTache # thread client
+19/11/2019 10:33:57 > ************ Serveur en attente # thread serveur
+19/11/2019 10:33:57 > Avant getTache # thread client
+19/11/2019 10:33:57 > Avant getTache # thread client
+19/11/2019 10:34:08 > /127.0.0.1:50488 # accept # thread serveur
+19/11/2019 10:34:09 > Requete lue par le serveur # thread serveur
+19/11/2019 10:34:09 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:34:09 > Run de tachesEnCours # thread client
+19/11/2019 10:34:09 > ************ Serveur en attente # thread serveur
+19/11/2019 10:34:09 > Avant getTache # thread client
+19/11/2019 10:36:46 > /127.0.0.1:50509 # accept # thread serveur
+19/11/2019 10:36:46 > Requete lue par le serveur # thread serveur
+19/11/2019 10:36:46 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:36:46 > Run de tachesEnCours # thread client
+19/11/2019 10:36:46 > ************ Serveur en attente # thread serveur
+19/11/2019 10:36:46 > Avant getTache # thread client
+19/11/2019 10:39:15 > /127.0.0.1:50514 # accept # thread serveur
+19/11/2019 10:39:16 > Requete lue par le serveur # thread serveur
+19/11/2019 10:39:16 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:39:16 > Run de tachesEnCours # thread client
+19/11/2019 10:39:16 > ************ Serveur en attente # thread serveur
+19/11/2019 10:39:16 > Avant getTache # thread client
+19/11/2019 10:43:59 > /127.0.0.1:50563 # accept # thread serveur
+19/11/2019 10:43:59 > Requete lue par le serveur # thread serveur
+19/11/2019 10:43:59 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:43:59 > Run de tachesEnCours # thread client
+19/11/2019 10:43:59 > ************ Serveur en attente # thread serveur
+19/11/2019 10:43:59 > Avant getTache # thread client
+19/11/2019 10:44:07 > /127.0.0.1:50567 # accept # thread serveur
+19/11/2019 10:44:07 > Requete lue par le serveur # thread serveur
+19/11/2019 10:44:07 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:44:07 > Run de tachesEnCours # thread client
+19/11/2019 10:44:07 > ************ Serveur en attente # thread serveur
+19/11/2019 10:44:07 > Avant getTache # thread client
+19/11/2019 10:46:49 > /127.0.0.1:50625 # accept # thread serveur
+19/11/2019 10:46:49 > Requete lue par le serveur # thread serveur
+19/11/2019 10:46:49 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:46:49 > Run de tachesEnCours # thread client
+19/11/2019 10:46:49 > ************ Serveur en attente # thread serveur
+19/11/2019 10:46:50 > Avant getTache # thread client
+19/11/2019 10:47:17 > /127.0.0.1:50629 # accept # thread serveur
+19/11/2019 10:47:17 > Requete lue par le serveur # thread serveur
+19/11/2019 10:47:17 > Run de tachesEnCours # thread client
+19/11/2019 10:47:17 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:47:17 > ************ Serveur en attente # thread serveur
+19/11/2019 10:47:17 > Avant getTache # thread client
+19/11/2019 10:47:47 > /127.0.0.1:50637 # accept # thread serveur
+19/11/2019 10:47:47 > Requete lue par le serveur # thread serveur
+19/11/2019 10:47:47 > Run de tachesEnCours # thread client
+19/11/2019 10:47:47 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:47:47 > ************ Serveur en attente # thread serveur
+19/11/2019 10:47:47 > Avant getTache # thread client
+19/11/2019 10:48:23 > /127.0.0.1:50651 # accept # thread serveur
+19/11/2019 10:48:23 > Requete lue par le serveur # thread serveur
+19/11/2019 10:48:23 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 10:48:23 > Run de tachesEnCours # thread client
+19/11/2019 10:48:23 > ************ Serveur en attente # thread serveur
+19/11/2019 10:48:23 > Avant getTache # thread client
+19/11/2019 11:11:03 > /127.0.0.1:50861 # accept # thread serveur
+19/11/2019 11:11:03 > Requete lue par le serveur # thread serveur
+19/11/2019 11:11:03 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 11:11:03 > Run de tachesEnCours # thread client
+19/11/2019 11:11:03 > ************ Serveur en attente # thread serveur
+19/11/2019 11:11:50 > ************ Serveur en attente # server a demande
+19/11/2019 11:11:50 > Démarrage pool de thread # thread serveur
+19/11/2019 11:11:50 > Avant getTache # thread client
+19/11/2019 11:11:50 > ************ Serveur en attente # thread serveur
+19/11/2019 11:11:50 > Avant getTache # thread client
+19/11/2019 11:11:50 > Avant getTache # thread client
+19/11/2019 11:16:09 > ************ Serveur en attente # server a demande
+19/11/2019 11:16:09 > Démarrage pool de thread # thread serveur
+19/11/2019 11:16:09 > ************ Serveur en attente # thread serveur
+19/11/2019 11:16:09 > Avant getTache # thread client
+19/11/2019 11:16:09 > Avant getTache # thread client
+19/11/2019 11:16:09 > Avant getTache # thread client
+19/11/2019 12:39:07 > ************ Serveur en attente # server a demande
+19/11/2019 12:39:08 > Démarrage pool de thread # thread serveur
+19/11/2019 12:39:08 > Avant getTache # thread client
+19/11/2019 12:39:08 > ************ Serveur en attente # thread serveur
+19/11/2019 12:39:08 > Avant getTache # thread client
+19/11/2019 12:39:08 > Avant getTache # thread client
+19/11/2019 12:49:09 > ************ Serveur en attente # server a demande
+19/11/2019 12:49:10 > Démarrage pool de thread # thread serveur
+19/11/2019 12:49:10 > Avant getTache # thread client
+19/11/2019 12:49:10 > Avant getTache # thread client
+19/11/2019 12:49:10 > Avant getTache # thread client
+19/11/2019 12:49:10 > ************ Serveur en attente # thread serveur
+19/11/2019 12:51:00 > ************ Serveur en attente # server a demande
+19/11/2019 12:51:01 > Démarrage pool de thread # thread serveur
+19/11/2019 12:51:01 > Avant getTache # thread client
+19/11/2019 12:51:01 > ************ Serveur en attente # thread serveur
+19/11/2019 12:51:01 > Avant getTache # thread client
+19/11/2019 12:51:01 > Avant getTache # thread client
+19/11/2019 12:54:03 > ************ Serveur en attente # server a demande
+19/11/2019 12:54:03 > Démarrage pool de thread # thread serveur
+19/11/2019 12:54:03 > Avant getTache # thread client
+19/11/2019 12:54:03 > ************ Serveur en attente # thread serveur
+19/11/2019 12:54:03 > Avant getTache # thread client
+19/11/2019 12:54:03 > Avant getTache # thread client
+19/11/2019 13:06:36 > ************ Serveur en attente # server a demande
+19/11/2019 13:06:36 > Démarrage pool de thread # thread serveur
+19/11/2019 13:06:36 > Avant getTache # thread client
+19/11/2019 13:06:36 > ************ Serveur en attente # thread serveur
+19/11/2019 13:06:36 > Avant getTache # thread client
+19/11/2019 13:06:36 > Avant getTache # thread client
+19/11/2019 13:08:45 > ************ Serveur en attente # server a demande
+19/11/2019 13:08:46 > Démarrage pool de thread # thread serveur
+19/11/2019 13:08:46 > ************ Serveur en attente # thread serveur
+19/11/2019 13:08:46 > Avant getTache # thread client
+19/11/2019 13:08:46 > Avant getTache # thread client
+19/11/2019 13:08:46 > Avant getTache # thread client
+19/11/2019 13:15:27 > ************ Serveur en attente # server a demande
+19/11/2019 13:15:28 > Démarrage pool de thread # thread serveur
+19/11/2019 13:15:28 > Avant getTache # thread client
+19/11/2019 13:15:28 > ************ Serveur en attente # thread serveur
+19/11/2019 13:15:28 > Avant getTache # thread client
+19/11/2019 13:15:28 > Avant getTache # thread client
+19/11/2019 13:16:02 > /127.0.0.1:60798 # accept # thread serveur
+19/11/2019 13:16:02 > Requete lue par le serveur # thread serveur
+19/11/2019 13:16:02 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:16:02 > Run de tachesEnCours # thread client
+19/11/2019 13:16:02 > ************ Serveur en attente # thread serveur
+19/11/2019 13:16:04 > Avant getTache # thread client
+19/11/2019 13:16:52 > /127.0.0.1:60830 # accept # thread serveur
+19/11/2019 13:16:52 > Requete lue par le serveur # thread serveur
+19/11/2019 13:16:52 > Run de tachesEnCours # thread client
+19/11/2019 13:16:52 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:16:52 > ************ Serveur en attente # thread serveur
+19/11/2019 13:16:52 > Avant getTache # thread client
+19/11/2019 13:22:45 > /127.0.0.1:60921 # accept # thread serveur
+19/11/2019 13:22:45 > Requete lue par le serveur # thread serveur
+19/11/2019 13:22:45 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:22:45 > Run de tachesEnCours # thread client
+19/11/2019 13:22:45 > ************ Serveur en attente # thread serveur
+19/11/2019 13:22:45 > Avant getTache # thread client
+19/11/2019 13:24:03 > /127.0.0.1:60947 # accept # thread serveur
+19/11/2019 13:24:03 > Requete lue par le serveur # thread serveur
+19/11/2019 13:24:03 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:24:03 > Run de tachesEnCours # thread client
+19/11/2019 13:24:03 > ************ Serveur en attente # thread serveur
+19/11/2019 13:24:03 > Avant getTache # thread client
+19/11/2019 13:25:08 > /127.0.0.1:60975 # accept # thread serveur
+19/11/2019 13:25:08 > Requete lue par le serveur # thread serveur
+19/11/2019 13:25:08 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:25:08 > Run de tachesEnCours # thread client
+19/11/2019 13:25:08 > ************ Serveur en attente # thread serveur
+19/11/2019 13:25:08 > Avant getTache # thread client
+19/11/2019 13:25:46 > /127.0.0.1:60985 # accept # thread serveur
+19/11/2019 13:25:46 > Requete lue par le serveur # thread serveur
+19/11/2019 13:25:46 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:25:46 > Run de tachesEnCours # thread client
+19/11/2019 13:25:46 > ************ Serveur en attente # thread serveur
+19/11/2019 13:25:46 > Avant getTache # thread client
+19/11/2019 13:26:05 > /127.0.0.1:60992 # accept # thread serveur
+19/11/2019 13:26:05 > Requete lue par le serveur # thread serveur
+19/11/2019 13:26:05 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:26:05 > Run de tachesEnCours # thread client
+19/11/2019 13:26:05 > ************ Serveur en attente # thread serveur
+19/11/2019 13:26:05 > Avant getTache # thread client
+19/11/2019 13:31:23 > /127.0.0.1:61060 # accept # thread serveur
+19/11/2019 13:31:23 > Requete lue par le serveur # thread serveur
+19/11/2019 13:31:23 > Run de tachesEnCours # thread client
+19/11/2019 13:31:23 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:31:23 > ************ Serveur en attente # thread serveur
+19/11/2019 13:31:23 > Avant getTache # thread client
+19/11/2019 13:31:58 > /127.0.0.1:61064 # accept # thread serveur
+19/11/2019 13:31:58 > Requete lue par le serveur # thread serveur
+19/11/2019 13:31:58 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 13:31:58 > Run de tachesEnCours # thread client
+19/11/2019 13:31:58 > ************ Serveur en attente # thread serveur
+19/11/2019 13:31:58 > Avant getTache # thread client
+19/11/2019 14:59:51 > /127.0.0.1:61956 # accept # thread serveur
+19/11/2019 14:59:51 > Requete lue par le serveur # thread serveur
+19/11/2019 14:59:51 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 14:59:51 > Run de tachesEnCours # thread client
+19/11/2019 14:59:51 > ************ Serveur en attente # thread serveur
+19/11/2019 14:59:51 > Avant getTache # thread client
+19/11/2019 15:00:00 > /127.0.0.1:61959 # accept # thread serveur
+19/11/2019 15:00:00 > Requete lue par le serveur # thread serveur
+19/11/2019 15:00:00 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:00:00 > Run de tachesEnCours # thread client
+19/11/2019 15:00:00 > ************ Serveur en attente # thread serveur
+19/11/2019 15:00:00 > Avant getTache # thread client
+19/11/2019 15:04:04 > ************ Serveur en attente # server a demande
+19/11/2019 15:04:05 > Démarrage pool de thread # thread serveur
+19/11/2019 15:04:05 > Avant getTache # thread client
+19/11/2019 15:04:05 > ************ Serveur en attente # thread serveur
+19/11/2019 15:04:05 > Avant getTache # thread client
+19/11/2019 15:04:05 > Avant getTache # thread client
+19/11/2019 15:11:13 > /127.0.0.1:62025 # accept # thread serveur
+19/11/2019 15:11:50 > ************ Serveur en attente # server a demande
+19/11/2019 15:11:51 > Démarrage pool de thread # thread serveur
+19/11/2019 15:11:51 > Avant getTache # thread client
+19/11/2019 15:11:51 > ************ Serveur en attente # thread serveur
+19/11/2019 15:11:51 > Avant getTache # thread client
+19/11/2019 15:11:51 > Avant getTache # thread client
+19/11/2019 15:12:33 > /127.0.0.1:62101 # accept # thread serveur
+19/11/2019 15:16:27 > ************ Serveur en attente # server a demande
+19/11/2019 15:16:28 > Démarrage pool de thread # thread serveur
+19/11/2019 15:16:28 > Avant getTache # thread client
+19/11/2019 15:16:28 > ************ Serveur en attente # thread serveur
+19/11/2019 15:16:28 > Avant getTache # thread client
+19/11/2019 15:16:28 > Avant getTache # thread client
+19/11/2019 15:16:39 > /127.0.0.1:62211 # accept # thread serveur
+19/11/2019 15:21:01 > ************ Serveur en attente # server a demande
+19/11/2019 15:21:01 > Démarrage pool de thread # thread serveur
+19/11/2019 15:21:01 > Avant getTache # thread client
+19/11/2019 15:21:01 > ************ Serveur en attente # thread serveur
+19/11/2019 15:21:01 > Avant getTache # thread client
+19/11/2019 15:21:01 > Avant getTache # thread client
+19/11/2019 15:21:11 > /127.0.0.1:62264 # accept # thread serveur
+19/11/2019 15:22:28 > ************ Serveur en attente # server a demande
+19/11/2019 15:22:28 > Démarrage pool de thread # thread serveur
+19/11/2019 15:22:28 > ************ Serveur en attente # thread serveur
+19/11/2019 15:22:28 > Avant getTache # thread client
+19/11/2019 15:22:28 > Avant getTache # thread client
+19/11/2019 15:22:28 > Avant getTache # thread client
+19/11/2019 15:22:34 > /127.0.0.1:62295 # accept # thread serveur
+19/11/2019 15:28:33 > ************ Serveur en attente # server a demande
+19/11/2019 15:28:34 > Démarrage pool de thread # thread serveur
+19/11/2019 15:28:34 > Avant getTache # thread client
+19/11/2019 15:28:34 > Avant getTache # thread client
+19/11/2019 15:28:34 > ************ Serveur en attente # thread serveur
+19/11/2019 15:28:34 > Avant getTache # thread client
+19/11/2019 15:28:48 > /127.0.0.1:62350 # accept # thread serveur
+19/11/2019 15:28:48 > Requete lue par le serveur # thread serveur
+19/11/2019 15:28:48 > Run de tachesEnCours # thread client
+19/11/2019 15:28:48 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:28:48 > ************ Serveur en attente # thread serveur
+19/11/2019 15:32:51 > ************ Serveur en attente # server a demande
+19/11/2019 15:32:51 > Démarrage pool de thread # thread serveur
+19/11/2019 15:32:51 > Avant getTache # thread client
+19/11/2019 15:32:51 > ************ Serveur en attente # thread serveur
+19/11/2019 15:32:51 > Avant getTache # thread client
+19/11/2019 15:32:51 > Avant getTache # thread client
+19/11/2019 15:32:56 > /127.0.0.1:62385 # accept # thread serveur
+19/11/2019 15:32:56 > Requete lue par le serveur # thread serveur
+19/11/2019 15:32:56 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:32:56 > Run de tachesEnCours # thread client
+19/11/2019 15:32:56 > ************ Serveur en attente # thread serveur
+19/11/2019 15:36:27 > ************ Serveur en attente # server a demande
+19/11/2019 15:36:28 > Démarrage pool de thread # thread serveur
+19/11/2019 15:36:28 > Avant getTache # thread client
+19/11/2019 15:36:28 > ************ Serveur en attente # thread serveur
+19/11/2019 15:36:28 > Avant getTache # thread client
+19/11/2019 15:36:28 > Avant getTache # thread client
+19/11/2019 15:36:42 > /127.0.0.1:62433 # accept # thread serveur
+19/11/2019 15:36:42 > Requete lue par le serveur # thread serveur
+19/11/2019 15:36:42 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:36:42 > Run de tachesEnCours # thread client
+19/11/2019 15:36:42 > ************ Serveur en attente # thread serveur
+19/11/2019 15:37:15 > ************ Serveur en attente # server a demande
+19/11/2019 15:37:16 > Démarrage pool de thread # thread serveur
+19/11/2019 15:37:16 > Avant getTache # thread client
+19/11/2019 15:37:16 > ************ Serveur en attente # thread serveur
+19/11/2019 15:37:16 > Avant getTache # thread client
+19/11/2019 15:37:16 > Avant getTache # thread client
+19/11/2019 15:37:23 > /127.0.0.1:62484 # accept # thread serveur
+19/11/2019 15:37:23 > Requete lue par le serveur # thread serveur
+19/11/2019 15:37:23 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:37:23 > Run de tachesEnCours # thread client
+19/11/2019 15:37:23 > ************ Serveur en attente # thread serveur
+19/11/2019 15:38:03 > ************ Serveur en attente # server a demande
+19/11/2019 15:38:03 > Démarrage pool de thread # thread serveur
+19/11/2019 15:38:03 > Avant getTache # thread client
+19/11/2019 15:38:03 > ************ Serveur en attente # thread serveur
+19/11/2019 15:38:03 > Avant getTache # thread client
+19/11/2019 15:38:03 > Avant getTache # thread client
+19/11/2019 15:38:12 > /127.0.0.1:62510 # accept # thread serveur
+19/11/2019 15:38:12 > Requete lue par le serveur # thread serveur
+19/11/2019 15:38:12 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:38:12 > Run de tachesEnCours # thread client
+19/11/2019 15:38:12 > ************ Serveur en attente # thread serveur
+19/11/2019 15:39:37 > ************ Serveur en attente # server a demande
+19/11/2019 15:39:38 > Démarrage pool de thread # thread serveur
+19/11/2019 15:39:38 > Avant getTache # thread client
+19/11/2019 15:39:38 > ************ Serveur en attente # thread serveur
+19/11/2019 15:39:38 > Avant getTache # thread client
+19/11/2019 15:39:38 > Avant getTache # thread client
+19/11/2019 15:39:48 > /10.59.22.11:62549 # accept # thread serveur
+19/11/2019 15:39:48 > Requete lue par le serveur # thread serveur
+19/11/2019 15:39:48 > Run de tachesEnCours # thread client
+19/11/2019 15:39:48 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:39:48 > ************ Serveur en attente # thread serveur
+19/11/2019 15:41:58 > ************ Serveur en attente # server a demande
+19/11/2019 15:41:59 > Démarrage pool de thread # thread serveur
+19/11/2019 15:41:59 > Avant getTache # thread client
+19/11/2019 15:41:59 > ************ Serveur en attente # thread serveur
+19/11/2019 15:41:59 > Avant getTache # thread client
+19/11/2019 15:41:59 > Avant getTache # thread client
+19/11/2019 15:42:12 > /10.59.22.11:62626 # accept # thread serveur
+19/11/2019 15:42:12 > Requete lue par le serveur # thread serveur
+19/11/2019 15:42:12 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:42:12 > Run de tachesEnCours # thread client
+19/11/2019 15:42:12 > ************ Serveur en attente # thread serveur
+19/11/2019 15:42:49 > ************ Serveur en attente # server a demande
+19/11/2019 15:42:49 > Démarrage pool de thread # thread serveur
+19/11/2019 15:42:49 > Avant getTache # thread client
+19/11/2019 15:42:49 > ************ Serveur en attente # thread serveur
+19/11/2019 15:42:49 > Avant getTache # thread client
+19/11/2019 15:42:49 > Avant getTache # thread client
+19/11/2019 15:42:56 > /10.59.22.11:62649 # accept # thread serveur
+19/11/2019 15:42:56 > Requete lue par le serveur # thread serveur
+19/11/2019 15:42:56 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:42:56 > Run de tachesEnCours # thread client
+19/11/2019 15:42:56 > ************ Serveur en attente # thread serveur
+19/11/2019 15:47:41 > ************ Serveur en attente # server a demande
+19/11/2019 15:47:42 > Démarrage pool de thread # thread serveur
+19/11/2019 15:47:42 > Avant getTache # thread client
+19/11/2019 15:47:42 > ************ Serveur en attente # thread serveur
+19/11/2019 15:47:42 > Avant getTache # thread client
+19/11/2019 15:47:42 > Avant getTache # thread client
+19/11/2019 15:47:54 > /10.59.22.11:62700 # accept # thread serveur
+19/11/2019 15:47:54 > Requete lue par le serveur # thread serveur
+19/11/2019 15:47:54 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:47:54 > Run de tachesEnCours # thread client
+19/11/2019 15:47:54 > ************ Serveur en attente # thread serveur
+19/11/2019 15:50:54 > ************ Serveur en attente # server a demande
+19/11/2019 15:50:54 > Démarrage pool de thread # thread serveur
+19/11/2019 15:50:54 > Avant getTache # thread client
+19/11/2019 15:50:54 > ************ Serveur en attente # thread serveur
+19/11/2019 15:50:54 > Avant getTache # thread client
+19/11/2019 15:50:54 > Avant getTache # thread client
+19/11/2019 15:51:02 > /10.59.22.11:62749 # accept # thread serveur
+19/11/2019 15:51:02 > Requete lue par le serveur # thread serveur
+19/11/2019 15:51:02 > Run de tachesEnCours # thread client
+19/11/2019 15:51:02 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 15:51:02 > ************ Serveur en attente # thread serveur
+19/11/2019 16:08:38 > /10.59.22.11:62905 # accept # thread serveur
+19/11/2019 16:08:38 > Requete lue par le serveur # thread serveur
+19/11/2019 16:08:38 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:08:38 > Run de tachesEnCours # thread client
+19/11/2019 16:08:38 > ************ Serveur en attente # thread serveur
+19/11/2019 16:09:11 > ************ Serveur en attente # server a demande
+19/11/2019 16:09:12 > Démarrage pool de thread # thread serveur
+19/11/2019 16:09:12 > Avant getTache # thread client
+19/11/2019 16:09:12 > ************ Serveur en attente # thread serveur
+19/11/2019 16:09:12 > Avant getTache # thread client
+19/11/2019 16:09:12 > Avant getTache # thread client
+19/11/2019 16:09:32 > /10.59.22.11:62975 # accept # thread serveur
+19/11/2019 16:09:32 > Requete lue par le serveur # thread serveur
+19/11/2019 16:09:32 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:09:32 > Run de tachesEnCours # thread client
+19/11/2019 16:09:32 > ************ Serveur en attente # thread serveur
+19/11/2019 16:11:04 > /10.59.22.11:63001 # accept # thread serveur
+19/11/2019 16:11:04 > Requete lue par le serveur # thread serveur
+19/11/2019 16:11:04 > Run de tachesEnCours # thread client
+19/11/2019 16:11:04 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:11:04 > ************ Serveur en attente # thread serveur
+19/11/2019 16:11:22 > ************ Serveur en attente # server a demande
+19/11/2019 16:11:22 > Démarrage pool de thread # thread serveur
+19/11/2019 16:11:22 > Avant getTache # thread client
+19/11/2019 16:11:22 > ************ Serveur en attente # thread serveur
+19/11/2019 16:11:22 > Avant getTache # thread client
+19/11/2019 16:11:22 > Avant getTache # thread client
+19/11/2019 16:11:30 > /10.59.22.11:63060 # accept # thread serveur
+19/11/2019 16:11:30 > Requete lue par le serveur # thread serveur
+19/11/2019 16:11:30 > Run de tachesEnCours # thread client
+19/11/2019 16:11:30 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:11:30 > ************ Serveur en attente # thread serveur
+19/11/2019 16:11:37 > /10.59.22.11:63062 # accept # thread serveur
+19/11/2019 16:11:37 > Requete lue par le serveur # thread serveur
+19/11/2019 16:11:37 > Run de tachesEnCours # thread client
+19/11/2019 16:11:37 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:11:37 > ************ Serveur en attente # thread serveur
+19/11/2019 16:12:42 > /10.59.22.11:63079 # accept # thread serveur
+19/11/2019 16:12:42 > Requete lue par le serveur # thread serveur
+19/11/2019 16:12:42 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:12:42 > Run de tachesEnCours # thread client
+19/11/2019 16:12:42 > ************ Serveur en attente # thread serveur
+19/11/2019 16:15:40 > ************ Serveur en attente # server a demande
+19/11/2019 16:15:41 > Démarrage pool de thread # thread serveur
+19/11/2019 16:15:41 > Avant getTache # thread client
+19/11/2019 16:15:41 > ************ Serveur en attente # thread serveur
+19/11/2019 16:15:41 > Avant getTache # thread client
+19/11/2019 16:15:41 > Avant getTache # thread client
+19/11/2019 16:16:14 > /10.59.22.11:63217 # accept # thread serveur
+19/11/2019 16:16:14 > Requete lue par le serveur # thread serveur
+19/11/2019 16:16:14 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:16:14 > Run de tachesEnCours # thread client
+19/11/2019 16:16:14 > ************ Serveur en attente # thread serveur
+19/11/2019 16:16:28 > /10.59.22.11:63221 # accept # thread serveur
+19/11/2019 16:16:28 > Requete lue par le serveur # thread serveur
+19/11/2019 16:16:28 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:16:28 > Run de tachesEnCours # thread client
+19/11/2019 16:16:28 > ************ Serveur en attente # thread serveur
+19/11/2019 16:29:35 > ************ Serveur en attente # server a demande
+19/11/2019 16:29:35 > Démarrage pool de thread # thread serveur
+19/11/2019 16:29:35 > Avant getTache # thread client
+19/11/2019 16:29:35 > ************ Serveur en attente # thread serveur
+19/11/2019 16:29:35 > Avant getTache # thread client
+19/11/2019 16:29:35 > Avant getTache # thread client
+19/11/2019 16:29:58 > /10.59.22.11:63524 # accept # thread serveur
+19/11/2019 16:29:58 > Requete lue par le serveur # thread serveur
+19/11/2019 16:29:58 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:29:58 > Run de tachesEnCours # thread client
+19/11/2019 16:29:58 > ************ Serveur en attente # thread serveur
+19/11/2019 16:29:59 > Avant getTache # thread client
+19/11/2019 16:30:41 > /10.59.22.11:63532 # accept # thread serveur
+19/11/2019 16:38:25 > ************ Serveur en attente # server a demande
+19/11/2019 16:38:25 > Démarrage pool de thread # thread serveur
+19/11/2019 16:38:25 > Avant getTache # thread client
+19/11/2019 16:38:25 > ************ Serveur en attente # thread serveur
+19/11/2019 16:38:25 > Avant getTache # thread client
+19/11/2019 16:38:25 > Avant getTache # thread client
+19/11/2019 16:38:38 > /10.59.22.11:63631 # accept # thread serveur
+19/11/2019 16:38:38 > Requete lue par le serveur # thread serveur
+19/11/2019 16:38:38 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:38:38 > Run de tachesEnCours # thread client
+19/11/2019 16:38:38 > ************ Serveur en attente # thread serveur
+19/11/2019 16:38:39 > Avant getTache # thread client
+19/11/2019 16:39:41 > /10.59.22.11:63638 # accept # thread serveur
+19/11/2019 16:39:41 > Requete lue par le serveur # thread serveur
+19/11/2019 16:39:41 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:39:41 > Run de tachesEnCours # thread client
+19/11/2019 16:39:41 > ************ Serveur en attente # thread serveur
+19/11/2019 16:39:41 > Avant getTache # thread client
+19/11/2019 16:42:29 > /10.59.22.11:63651 # accept # thread serveur
+19/11/2019 16:42:29 > Requete lue par le serveur # thread serveur
+19/11/2019 16:42:29 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:42:29 > Run de tachesEnCours # thread client
+19/11/2019 16:42:29 > ************ Serveur en attente # thread serveur
+19/11/2019 16:42:29 > Avant getTache # thread client
+19/11/2019 16:45:30 > /10.59.22.11:63668 # accept # thread serveur
+19/11/2019 16:45:30 > Requete lue par le serveur # thread serveur
+19/11/2019 16:45:30 > Run de tachesEnCours # thread client
+19/11/2019 16:45:30 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:45:30 > ************ Serveur en attente # thread serveur
+19/11/2019 16:45:30 > Avant getTache # thread client
+19/11/2019 16:45:37 > /10.59.22.11:63671 # accept # thread serveur
+19/11/2019 16:45:37 > Requete lue par le serveur # thread serveur
+19/11/2019 16:45:37 > Run de tachesEnCours # thread client
+19/11/2019 16:45:37 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:45:37 > ************ Serveur en attente # thread serveur
+19/11/2019 16:45:37 > Avant getTache # thread client
+19/11/2019 16:45:43 > /10.59.22.11:63675 # accept # thread serveur
+19/11/2019 16:45:43 > Requete lue par le serveur # thread serveur
+19/11/2019 16:45:43 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:45:43 > Run de tachesEnCours # thread client
+19/11/2019 16:45:43 > ************ Serveur en attente # thread serveur
+19/11/2019 16:45:43 > Avant getTache # thread client
+19/11/2019 16:46:09 > ************ Serveur en attente # server a demande
+19/11/2019 16:46:10 > Démarrage pool de thread # thread serveur
+19/11/2019 16:46:10 > Avant getTache # thread client
+19/11/2019 16:46:10 > ************ Serveur en attente # thread serveur
+19/11/2019 16:46:10 > Avant getTache # thread client
+19/11/2019 16:46:10 > Avant getTache # thread client
+19/11/2019 16:46:29 > /10.59.22.11:63741 # accept # thread serveur
+19/11/2019 16:46:29 > Requete lue par le serveur # thread serveur
+19/11/2019 16:46:29 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:46:29 > Run de tachesEnCours # thread client
+19/11/2019 16:46:29 > ************ Serveur en attente # thread serveur
+19/11/2019 16:46:30 > Avant getTache # thread client
+19/11/2019 16:46:38 > /10.59.22.11:63744 # accept # thread serveur
+19/11/2019 16:46:38 > Requete lue par le serveur # thread serveur
+19/11/2019 16:46:38 > Run de tachesEnCours # thread client
+19/11/2019 16:46:38 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:46:38 > ************ Serveur en attente # thread serveur
+19/11/2019 16:46:38 > Avant getTache # thread client
+19/11/2019 16:47:59 > /10.59.22.11:63763 # accept # thread serveur
+19/11/2019 16:47:59 > Requete lue par le serveur # thread serveur
+19/11/2019 16:47:59 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:47:59 > Run de tachesEnCours # thread client
+19/11/2019 16:47:59 > ************ Serveur en attente # thread serveur
+19/11/2019 16:47:59 > Avant getTache # thread client
+19/11/2019 16:49:00 > ************ Serveur en attente # server a demande
+19/11/2019 16:49:00 > Démarrage pool de thread # thread serveur
+19/11/2019 16:49:00 > ************ Serveur en attente # thread serveur
+19/11/2019 16:49:00 > Avant getTache # thread client
+19/11/2019 16:49:00 > Avant getTache # thread client
+19/11/2019 16:49:00 > Avant getTache # thread client
+19/11/2019 16:49:20 > /10.59.22.11:63817 # accept # thread serveur
+19/11/2019 16:49:20 > Requete lue par le serveur # thread serveur
+19/11/2019 16:49:20 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:49:20 > Run de tachesEnCours # thread client
+19/11/2019 16:49:20 > ************ Serveur en attente # thread serveur
+19/11/2019 16:49:21 > Avant getTache # thread client
+19/11/2019 16:50:56 > /10.59.22.11:63828 # accept # thread serveur
+19/11/2019 16:50:56 > Requete lue par le serveur # thread serveur
+19/11/2019 16:50:56 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:50:56 > Run de tachesEnCours # thread client
+19/11/2019 16:50:56 > ************ Serveur en attente # thread serveur
+19/11/2019 16:50:57 > Avant getTache # thread client
+19/11/2019 16:51:11 > /10.59.22.11:63860 # accept # thread serveur
+19/11/2019 16:51:11 > Requete lue par le serveur # thread serveur
+19/11/2019 16:51:11 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:51:11 > Run de tachesEnCours # thread client
+19/11/2019 16:51:11 > ************ Serveur en attente # thread serveur
+19/11/2019 16:51:11 > Avant getTache # thread client
+19/11/2019 16:51:24 > /10.59.22.11:63867 # accept # thread serveur
+19/11/2019 16:51:24 > Requete lue par le serveur # thread serveur
+19/11/2019 16:51:24 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:51:24 > Run de tachesEnCours # thread client
+19/11/2019 16:51:24 > ************ Serveur en attente # thread serveur
+19/11/2019 16:51:24 > Avant getTache # thread client
+19/11/2019 16:51:25 > /10.59.22.11:63870 # accept # thread serveur
+19/11/2019 16:51:25 > Requete lue par le serveur # thread serveur
+19/11/2019 16:51:25 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:51:25 > Run de tachesEnCours # thread client
+19/11/2019 16:51:25 > ************ Serveur en attente # thread serveur
+19/11/2019 16:51:25 > Avant getTache # thread client
+19/11/2019 16:51:27 > /10.59.22.11:63873 # accept # thread serveur
+19/11/2019 16:51:27 > Requete lue par le serveur # thread serveur
+19/11/2019 16:51:27 > Run de tachesEnCours # thread client
+19/11/2019 16:51:27 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:51:27 > ************ Serveur en attente # thread serveur
+19/11/2019 16:51:27 > Avant getTache # thread client
+19/11/2019 16:52:15 > /10.59.22.11:63889 # accept # thread serveur
+19/11/2019 16:52:16 > Requete lue par le serveur # thread serveur
+19/11/2019 16:52:16 > Run de tachesEnCours # thread client
+19/11/2019 16:52:16 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:52:16 > ************ Serveur en attente # thread serveur
+19/11/2019 16:52:16 > Avant getTache # thread client
+19/11/2019 16:52:25 > /10.59.22.11:63894 # accept # thread serveur
+19/11/2019 16:52:25 > Requete lue par le serveur # thread serveur
+19/11/2019 16:52:25 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 16:52:25 > Run de tachesEnCours # thread client
+19/11/2019 16:52:25 > ************ Serveur en attente # thread serveur
+19/11/2019 16:52:25 > Avant getTache # thread client
+19/11/2019 19:03:14 > ************ Serveur en attente # server a demande
+19/11/2019 19:03:14 > Démarrage pool de thread # thread serveur
+19/11/2019 19:03:15 > ************ Serveur en attente # thread serveur
+19/11/2019 19:03:15 > Avant getTache # thread client
+19/11/2019 19:03:15 > Avant getTache # thread client
+19/11/2019 19:03:15 > Avant getTache # thread client
+19/11/2019 19:06:29 > ************ Serveur en attente # server a demande
+19/11/2019 19:06:30 > Démarrage pool de thread # thread serveur
+19/11/2019 19:06:30 > Avant getTache # thread client
+19/11/2019 19:06:30 > ************ Serveur en attente # thread serveur
+19/11/2019 19:06:30 > Avant getTache # thread client
+19/11/2019 19:06:30 > Avant getTache # thread client
+19/11/2019 19:06:49 > /192.168.0.28:64453 # accept # thread serveur
+19/11/2019 19:06:49 > Requete lue par le serveur # thread serveur
+19/11/2019 19:06:49 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 19:06:49 > Run de tachesEnCours # thread client
+19/11/2019 19:06:49 > ************ Serveur en attente # thread serveur
+19/11/2019 19:06:51 > Avant getTache # thread client
+19/11/2019 19:12:02 > /192.168.0.28:64626 # accept # thread serveur
+19/11/2019 19:12:02 > Requete lue par le serveur # thread serveur
+19/11/2019 19:12:02 > Run de tachesEnCours # thread client
+19/11/2019 19:12:02 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 19:12:02 > ************ Serveur en attente # thread serveur
+19/11/2019 19:12:03 > Avant getTache # thread client
+19/11/2019 19:24:27 > /192.168.0.28:64801 # accept # thread serveur
+19/11/2019 19:24:27 > Requete lue par le serveur # thread serveur
+19/11/2019 19:24:27 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 19:24:27 > Run de tachesEnCours # thread client
+19/11/2019 19:24:27 > ************ Serveur en attente # thread serveur
+19/11/2019 19:24:27 > Avant getTache # thread client
+19/11/2019 19:24:39 > /192.168.0.28:64807 # accept # thread serveur
+19/11/2019 19:24:39 > Requete lue par le serveur # thread serveur
+19/11/2019 19:24:39 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 19:24:39 > Run de tachesEnCours # thread client
+19/11/2019 19:24:39 > ************ Serveur en attente # thread serveur
+19/11/2019 19:24:39 > Avant getTache # thread client
+19/11/2019 20:10:27 > /192.168.0.28:49176 # accept # thread serveur
+19/11/2019 20:10:27 > Requete lue par le serveur # thread serveur
+19/11/2019 20:10:27 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:10:27 > Run de tachesEnCours # thread client
+19/11/2019 20:10:27 > ************ Serveur en attente # thread serveur
+19/11/2019 20:10:27 > Avant getTache # thread client
+19/11/2019 20:28:12 > /192.168.0.28:50149 # accept # thread serveur
+19/11/2019 20:28:12 > Requete lue par le serveur # thread serveur
+19/11/2019 20:28:12 > Run de tachesEnCours # thread client
+19/11/2019 20:28:12 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:28:12 > ************ Serveur en attente # thread serveur
+19/11/2019 20:28:12 > Avant getTache # thread client
+19/11/2019 20:34:00 > /192.168.0.28:50440 # accept # thread serveur
+19/11/2019 20:34:00 > Requete lue par le serveur # thread serveur
+19/11/2019 20:34:00 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:34:00 > Run de tachesEnCours # thread client
+19/11/2019 20:34:00 > ************ Serveur en attente # thread serveur
+19/11/2019 20:34:00 > Avant getTache # thread client
+19/11/2019 20:34:10 > /192.168.0.28:50449 # accept # thread serveur
+19/11/2019 20:34:10 > Requete lue par le serveur # thread serveur
+19/11/2019 20:34:10 > Run de tachesEnCours # thread client
+19/11/2019 20:34:10 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:34:10 > ************ Serveur en attente # thread serveur
+19/11/2019 20:34:10 > Avant getTache # thread client
+19/11/2019 20:47:39 > /192.168.0.28:50948 # accept # thread serveur
+19/11/2019 20:47:39 > Requete lue par le serveur # thread serveur
+19/11/2019 20:47:39 > Run de tachesEnCours # thread client
+19/11/2019 20:47:39 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:47:39 > ************ Serveur en attente # thread serveur
+19/11/2019 20:47:39 > Avant getTache # thread client
+19/11/2019 20:48:07 > /192.168.0.28:50967 # accept # thread serveur
+19/11/2019 20:48:07 > Requete lue par le serveur # thread serveur
+19/11/2019 20:48:07 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:48:07 > Run de tachesEnCours # thread client
+19/11/2019 20:48:07 > ************ Serveur en attente # thread serveur
+19/11/2019 20:48:08 > Avant getTache # thread client
+19/11/2019 20:48:14 > /192.168.0.28:50971 # accept # thread serveur
+19/11/2019 20:48:14 > Requete lue par le serveur # thread serveur
+19/11/2019 20:48:14 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:48:14 > Run de tachesEnCours # thread client
+19/11/2019 20:48:14 > ************ Serveur en attente # thread serveur
+19/11/2019 20:48:14 > Avant getTache # thread client
+19/11/2019 20:48:41 > /192.168.0.28:51012 # accept # thread serveur
+19/11/2019 20:48:41 > Requete lue par le serveur # thread serveur
+19/11/2019 20:48:41 > Run de tachesEnCours # thread client
+19/11/2019 20:48:41 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:48:41 > ************ Serveur en attente # thread serveur
+19/11/2019 20:48:42 > Avant getTache # thread client
+19/11/2019 20:51:22 > /192.168.0.28:51095 # accept # thread serveur
+19/11/2019 20:51:22 > Requete lue par le serveur # thread serveur
+19/11/2019 20:51:22 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:51:22 > Run de tachesEnCours # thread client
+19/11/2019 20:51:22 > ************ Serveur en attente # thread serveur
+19/11/2019 20:51:22 > Avant getTache # thread client
+19/11/2019 20:51:30 > /192.168.0.28:51099 # accept # thread serveur
+19/11/2019 20:51:30 > Requete lue par le serveur # thread serveur
+19/11/2019 20:51:30 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:51:30 > Run de tachesEnCours # thread client
+19/11/2019 20:51:30 > ************ Serveur en attente # thread serveur
+19/11/2019 20:51:30 > Avant getTache # thread client
+19/11/2019 20:52:14 > /192.168.0.28:51103 # accept # thread serveur
+19/11/2019 20:52:14 > Requete lue par le serveur # thread serveur
+19/11/2019 20:52:14 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:52:14 > Run de tachesEnCours # thread client
+19/11/2019 20:52:14 > ************ Serveur en attente # thread serveur
+19/11/2019 20:52:14 > Avant getTache # thread client
+19/11/2019 20:53:51 > /192.168.0.28:51123 # accept # thread serveur
+19/11/2019 20:53:51 > Requete lue par le serveur # thread serveur
+19/11/2019 20:53:51 > Run de tachesEnCours # thread client
+19/11/2019 20:53:51 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:53:51 > ************ Serveur en attente # thread serveur
+19/11/2019 20:53:51 > Avant getTache # thread client
+19/11/2019 20:54:04 > /192.168.0.28:51127 # accept # thread serveur
+19/11/2019 20:54:04 > Requete lue par le serveur # thread serveur
+19/11/2019 20:54:04 > Run de tachesEnCours # thread client
+19/11/2019 20:54:04 > Ajout d'un travail dans la file # thread serveur
+19/11/2019 20:54:04 > ************ Serveur en attente # thread serveur
+19/11/2019 20:54:04 > Avant getTache # thread client
