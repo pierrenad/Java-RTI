@@ -122,12 +122,11 @@ public class GestionBD {
     
     public synchronized ResultSet CheckPayement(String numcarte, String code) {
         try {
-            PreparedStatement requete = con.prepareStatement("SELECT argent_carte "+
+            PreparedStatement requete = con.prepareStatement("SELECT argent_carte, date_expiration "+
             "FROM cartes "+
             "WHERE num_carte LIKE ? AND code_carte LIKE ? ;");
             requete.setString(1, numcarte);
             requete.setString(2, code);
-            System.out.println(""+numcarte+"      "+code);
             ResultSet rs = requete.executeQuery();
             return rs;
         } catch (SQLException ex) {
@@ -139,7 +138,7 @@ public class GestionBD {
     public synchronized ResultSet ListeTraversees() {
         try {
             PreparedStatement requete = con.prepareStatement("SELECT id_traversee, port_dep_traversee, port_dest_traversee, depart_traversee, prix_traversee, nbtickets_traversee "+
-            "FROM Traversees;"); 
+            "FROM Traversees order by depart_traversee;"); 
             ResultSet rs = requete.executeQuery();
             return rs;
         }
@@ -231,20 +230,85 @@ public class GestionBD {
         }
     }
     
-    public synchronized void setReservation(String traversee, String idclient,String matricule)
+    public synchronized String setReservation(String traversee, String idclient,String matricule)
     {
         try{
-        Random rand=new Random();
-        PreparedStatement requete = con.prepareStatement("INSERT INTO reservations VALUES(?,?,?,?,'O','O');");
-        String temp = ("20191021-RES"+rand.nextInt(1000));
-        requete.setString(1,temp);
-        requete.setString(2, traversee);
-        requete.setString(3, idclient);
-        requete.setString(4, matricule);
-        requete.executeUpdate();
+            Random rand=new Random();
+            PreparedStatement requete = con.prepareStatement("INSERT INTO reservations VALUES(?,?,?,?,'O','O');");
+            String temp = ("20191125-RES"+rand.nextInt(1000));
+            requete.setString(1,temp);
+            requete.setString(2, traversee);
+            requete.setString(3, idclient);
+            requete.setString(4, matricule);
+            requete.executeUpdate();
+            return temp; 
         }
         catch (SQLException ex) {
             System.err.println("<setreservation> " + ex.getMessage());
+            return null;
+        }
+    }
+    
+    public synchronized int checkPlacesDispo(String id)
+    {
+        try{
+            PreparedStatement requete = con.prepareStatement("select (n.capacite_navire_leger-t.nbtickets_traversee) "+
+            "from traversees t "+
+            "INNER JOIN navires n "+
+            "where t.navire_traversee = n.matricule_navire AND t.id_traversee = ?;");
+            requete.setString(1, id);
+            ResultSet rs = requete.executeQuery();
+            rs.next();
+            int nbplacerest = rs.getInt(1);
+
+            return nbplacerest;
+        }
+        catch (SQLException ex) {
+            System.err.println("<chkplacedispo> " + ex.getMessage());
+            return 0;
+        }
+    }
+    
+    public synchronized void setAugPlace(String id)
+    {
+        try{
+            PreparedStatement requete = con.prepareStatement("Update traversees set nbtickets_traversee = nbtickets_traversee +1 " +
+            "Where id_traversee = ?;");
+            requete.setString(1, id);
+            requete.executeUpdate();
+        }
+        catch (SQLException ex) {
+            System.err.println("<setAugPlace> " + ex.getMessage());
+        }
+    }
+    
+    public synchronized void setDimPlace(String id)
+    {
+        try{
+            PreparedStatement requete = con.prepareStatement("Update traversees set nbtickets_traversee = nbtickets_traversee -1 " +
+            "Where id_traversee = ?;");
+            requete.setString(1, id);
+            requete.executeUpdate();
+        }
+        catch (SQLException ex) {
+            System.err.println("<setDimPlace> " + ex.getMessage());
+        }
+    }
+    
+    public synchronized ResultSet getCartInfo(String id)
+    {
+        try{
+            PreparedStatement requete = con.prepareStatement("select port_dep_traversee, port_dest_traversee, depart_traversee, prix_traversee, id_traversee "+
+            "from traversees "+
+            "where id_traversee = ?;");
+            requete.setString(1, id);
+            ResultSet rs = requete.executeQuery();
+            rs.next();      
+            return rs;
+        }
+        catch (SQLException ex) {
+            System.err.println("<chkplacedispo> " + ex.getMessage());
+            return null;
         }
     }
 }

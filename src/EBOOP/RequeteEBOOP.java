@@ -5,9 +5,6 @@
  */
 package EBOOP;
 
-import CHECKINAP.ReponseProtocol;
-import CHECKINAP.RequeteProtocol;
-import static CHECKINAP.RequeteProtocol.LOGIN_WEB;
 import db.facilities.GestionBD;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,8 +14,6 @@ import java.net.Socket;
 import java.sql.ResultSet;
 import java.util.Properties;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import log.LogServeur;
 import rti_interface.ConsoleServeur;
 import rti_interface.Requete;
@@ -29,13 +24,19 @@ import rti_interface.Requete;
  * @author Pierre
  */
 public class RequeteEBOOP implements Requete, Serializable {     
+    public static final int REGISTER = 1;
+    public static final int CROSSING = 2;
+    public static final int ADD_CART = 3; 
+    public static final int VIEW_CART = 4; 
+    public static final int BUY_CART = 5; 
+    public static final int RESERV = 6; 
+    
+    public static final long serialVersionUID = 683388106844655395L; // Pas touche 
+    
     private int type;
     private Socket socketCli;
     private String charge; 
-    private static Properties hashtable = new Properties();    
-    
-    public static final int REGISTER = 1;
-
+    private static Properties hashtable = new Properties();
     
     private String chargeUtile;
     
@@ -61,7 +62,7 @@ public class RequeteEBOOP implements Requete, Serializable {
 
     public RequeteEBOOP(int t, String ch) {
         type = t;
-        charge = ch;
+        charge = ch; 
     }
     public RequeteEBOOP(int t, Socket s, String ch) {
         type = t;
@@ -70,13 +71,53 @@ public class RequeteEBOOP implements Requete, Serializable {
     }
 
     @Override
-    public Runnable createRunnable(final Socket s, final ObjectInputStream ois, final LogServeur ls) {        
+    public Runnable createRunnable(final Socket s, final ObjectInputStream ois, final LogServeur ls) {  
         if (type==REGISTER)
             return new Runnable()
             {
                 public void run()
                 {
                     RequeteRegister(s, ls); 
+                }
+            }; 
+        else if (type==CROSSING)
+            return new Runnable()
+            {
+                public void run()
+                {
+                    ListCrossing(s, ls); 
+                }
+            }; 
+        else if (type==ADD_CART)
+            return new Runnable() 
+            {
+                public void run() 
+                {
+                    AddToCart(s, ls); 
+                }
+            }; 
+        else if (type==VIEW_CART)
+            return new Runnable() 
+            {
+                public void run() 
+                {
+                    ViewCart(s, ls); 
+                }
+            };
+        else if (type==BUY_CART)
+            return new Runnable() 
+            {
+                public void run() 
+                {
+                    BuyCart(s, ls); 
+                }
+            }; 
+        else if (type==RESERV)
+            return new Runnable() 
+            {
+                public void run() 
+                {
+                    Reservation(s, ls); 
                 }
             }; 
         else return null; 
@@ -120,6 +161,186 @@ public class RequeteEBOOP implements Requete, Serializable {
                 }
             }
         };*/
+    }
+    
+    public void Reservation(Socket s, ConsoleServeur cs) { 
+        GestionBD gdb = new GestionBD(); 
+        ObjectOutputStream oos;
+        ReponseEBOOP rep; 
+        String res = "";
+        String crossing = ""; 
+        try {
+            gdb.connection("HappyFerryDB","user","user");
+            StringTokenizer st = new StringTokenizer(this.charge, ";");
+            String Cross = st.nextToken(); 
+            String Client = st.nextToken(); 
+            String Matricule = st.nextToken(); 
+            StringTokenizer str = new StringTokenizer(Cross, "\n"); 
+            StringTokenizer stro;
+            while(str.hasMoreElements()) {
+                stro = new StringTokenizer(str.nextToken(), "#"); 
+                stro.nextToken();stro.nextToken();stro.nextToken();stro.nextToken(); // elements avant l'id on s'en fou ici 
+                crossing = stro.nextToken(); 
+                res = gdb.setReservation(crossing, Client, Matricule); // idtrav idclient matricule 
+            }
+
+            rep = new ReponseEBOOP(ReponseEBOOP.RESERV_OK, res); // on envoie l'id
+            
+            try {
+                oos = new ObjectOutputStream(s.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException e) {
+                System.err.println("<RequeteEBOOP> Erreur réseau "+  e.getMessage());
+            }
+        }
+        catch(Exception e) {
+            System.err.println("<AddToCart> " + e.getMessage());
+        } 
+    }
+    
+    public void BuyCart(Socket s, ConsoleServeur cs) { 
+        GestionBD gdb = new GestionBD(); 
+        ObjectOutputStream oos;
+        ReponseEBOOP rep; 
+        String mess = "";
+
+        try {
+            gdb.connection("db_card","user","user");
+            StringTokenizer st = new StringTokenizer(this.charge, "#");
+            String num = st.nextToken(); 
+            String code = st.nextToken(); 
+            String date = st.nextToken(); 
+            float prix = Float.parseFloat(st.nextToken()); 
+
+            ResultSet rs = gdb.CheckPayement(num,code); //carte et code
+            rs.next(); 
+            //st.nextToken(); // expiration
+            if(prix <= rs.getInt(1)) // comparer prix total et argent sur carte
+            {
+                rep = new ReponseEBOOP(ReponseEBOOP.BUY_CART_OK, "The payement is done"); 
+            }
+            else
+            {
+                rep = new ReponseEBOOP(ReponseEBOOP.BUY_CART_BAD_MONEY, "You don't have enough money on this card"); 
+            } 
+
+            try {
+                oos = new ObjectOutputStream(s.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException e) {
+                System.err.println("<RequeteEBOOP> Erreur réseau "+  e.getMessage());
+            }
+        }
+        catch(Exception e) {
+            System.err.println("<AddToCart> " + e.getMessage());
+            rep = new ReponseEBOOP(ReponseEBOOP.BUY_CART_BAD_INFO, "The card have bad informations"); 
+            try {
+                oos = new ObjectOutputStream(s.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException ex) {
+                System.err.println("<RequeteEBOOP> Erreur réseau "+  ex.getMessage());
+            }
+        } 
+    }
+    
+    public void ViewCart(Socket s, ConsoleServeur cs) { 
+        GestionBD gdb = new GestionBD(); 
+        ObjectOutputStream oos;
+        ReponseEBOOP rep; 
+        String mess = "";
+        
+        try {
+            gdb.connection("HappyFerryDB","user","user");
+            StringTokenizer st = new StringTokenizer(this.charge, "#");
+            while(st.hasMoreElements()) {
+                ResultSet rs = gdb.getCartInfo(st.nextToken()); 
+                
+                mess+=(rs.getString(1)+'#'+rs.getString(2)+"#"+rs.getTimestamp(3)+'#'+rs.getFloat(4)+"#"+rs.getString(5)+'#'+"\n"); 
+            }
+            
+            rep = new ReponseEBOOP(ReponseEBOOP.VIEW_CART_OK, mess); 
+            
+            try {
+                oos = new ObjectOutputStream(s.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException e) {
+                System.err.println("<RequeteEBOOP> Erreur réseau "+  e.getMessage());
+            }
+        }
+        catch(Exception e) {
+            System.err.println("<AddToCart> " + e.getMessage());
+        } 
+    }
+    
+    public void AddToCart(Socket s, ConsoleServeur cs) {
+        GestionBD gdb = new GestionBD(); 
+        ObjectOutputStream oos;
+        ReponseEBOOP rep; 
+        int place; 
+        
+        try {
+            String idTrav = this.charge; 
+            gdb.connection("HappyFerryDB","user","user");
+            
+            place = gdb.checkPlacesDispo(idTrav); 
+            if(place > 0) {
+                gdb.setAugPlace(idTrav); 
+                //System.out.println("<addtocart> id : " + idTrav); 
+                rep = new ReponseEBOOP(ReponseEBOOP.ADD_CART_OK, ""); 
+            }
+            else {
+                rep = new ReponseEBOOP(ReponseEBOOP.ADD_CART_OK, ""); 
+            }
+            try {
+                oos = new ObjectOutputStream(s.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException e) {
+                System.err.println("<RequeteEBOOP> Erreur réseau "+  e.getMessage());
+            }
+        }
+        catch(Exception e) {
+            System.err.println("<AddToCart> " + e.getMessage());
+        } 
+    }
+    
+    public void ListCrossing(Socket s, ConsoleServeur cs) {
+        GestionBD gdb = new GestionBD(); 
+        ObjectOutputStream oos;
+        ReponseEBOOP rep; 
+        String mess = ""; 
+        try { 
+            gdb.connection("HappyFerryDB","user","user"); 
+            ResultSet rs = gdb.requete("select * from traversees order by depart_traversee;"); 
+            
+            while(rs.next()) {
+                mess+=(rs.getString(1)+'#'+rs.getTimestamp(2)+'#'+rs.getString(3)+'#'+rs.getString(4)+'#'+rs.getString(5)+'#'+rs.getInt(6)+'#'+rs.getInt(7)+'#'+rs.getInt(8)+'#'+rs.getFloat(9)+'#'+"\n"); 
+            }
+            //mess+="end"; 
+            //System.out.println("mess : " + mess);
+            rep = new ReponseEBOOP(ReponseEBOOP.LISTE_OK, mess); 
+
+            try {
+                oos = new ObjectOutputStream(s.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException e) {
+                System.err.println("<RequeteEBOOP> Erreur réseau "+  e.getMessage());
+            }
+        }
+        catch(Exception e) {
+            System.err.println("<ListCrossing> " + e.getMessage());
+        } 
     }
     
     public void RequeteRegister(Socket s, ConsoleServeur cs)

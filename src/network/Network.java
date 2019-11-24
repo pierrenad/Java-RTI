@@ -22,7 +22,7 @@ public class Network {
     
     public Socket Init() {
         Socket cSock;
-        String adresse = "192.168.0.28";
+        String adresse = "192.168.1.55";
         int port = 59000; 
 
         /*try {
@@ -48,7 +48,7 @@ public class Network {
     
     public Socket InitOnDemand() {
         Socket cSock;
-        String adresse = "192.168.0.28";
+        String adresse = "192.168.1.55";
         int port = 59001; 
                 
         /*try {

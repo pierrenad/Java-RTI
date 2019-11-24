@@ -127,7 +127,7 @@ public class RequeteProtocol implements Requete, Serializable {
                 } 
             }
             if(ClientFound) {
-                rep = new ReponseProtocol(ReponseProtocol.CLIENT_FOUND, resSet.getString(1)+"#"+resSet.getString(2)+"#"+resSet.getString(3)+"#"+resSet.getString(4)+"#"+resSet.getString(6));
+                rep = new ReponseProtocol(ReponseProtocol.CLIENT_FOUND, resSet.getString(1)+"#"+resSet.getString(2)+"#"+resSet.getString(3)+"#"+resSet.getString(4)+"#"+resSet.getString(5)+"#"+resSet.getString(6));
                 try {
                     oos = new ObjectOutputStream(sock.getOutputStream());
                     oos.writeObject(rep); 
