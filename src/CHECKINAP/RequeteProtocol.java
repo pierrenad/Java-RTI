@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import log.LogServeur;
+import rti_interface.ConsoleServeur;
 import rti_interface.Requete;
 
 /**
@@ -53,13 +54,13 @@ public class RequeteProtocol implements Requete, Serializable {
     }
 
     @Override
-    public Runnable createRunnable(final Socket s, final ObjectInputStream ois, final LogServeur ls) {
+    public Runnable createRunnable(final Socket s, final ConsoleServeur ls, final ObjectInputStream ois, ObjectOutputStream oos) {
         if (type==LOGIN)
             return new Runnable()
             {
                 public void run()
                 {
-                    requeteLogin(s, ls); 
+                    requeteLogin(s, ls, oos); 
                 }
             }; 
         else if (type==VERIF_BOOKING)
@@ -67,7 +68,7 @@ public class RequeteProtocol implements Requete, Serializable {
             {
                 public void run()
                 {
-                    requeteVerifBooking(s, ls); 
+                    requeteVerifBooking(s, ls, oos); 
                 }
             };
         else if (type==BUY_TICKET)
@@ -75,7 +76,7 @@ public class RequeteProtocol implements Requete, Serializable {
             {
                 public void run()
                 {
-                    requeteBuyTicket(s, ls);
+                    requeteBuyTicket(s, ls, oos);
                 }
             };
         else if (type==CLOSE)
@@ -83,7 +84,7 @@ public class RequeteProtocol implements Requete, Serializable {
             {
                 public void run()
                 {
-                    requeteClose(s, ls);
+                    requeteClose(s, ls, oos);
                 }
             }; 
         else if (type==LISTE_CLIENTS)
@@ -91,7 +92,7 @@ public class RequeteProtocol implements Requete, Serializable {
             {
                 public void run()
                 {
-                    requeteListeClients(s, ls);
+                    requeteListeClients(s, ls, oos);
                 }
             }; 
         else if (type==LOGIN_WEB)
@@ -99,18 +100,18 @@ public class RequeteProtocol implements Requete, Serializable {
             {
                 public void run()
                 {
-                    LoginWeb(s, ls); 
+                    LoginWeb(s, ls, oos); 
                 }
             }; 
         else return null; 
     }
     
-    private void LoginWeb(Socket sock, LogServeur ls) { 
+    private void LoginWeb(Socket sock, ConsoleServeur ls, ObjectOutputStream oos) { 
         GestionBD gdb = new GestionBD();
         boolean ClientFound = false; 
         
         //StringTokenizer st = new StringTokenizer(this.charge, "#");
-        ObjectOutputStream oos;
+        //ObjectOutputStream oos;
         ReponseProtocol rep; 
         
         try { 
@@ -129,7 +130,7 @@ public class RequeteProtocol implements Requete, Serializable {
             if(ClientFound) {
                 rep = new ReponseProtocol(ReponseProtocol.CLIENT_FOUND, resSet.getString(1)+"#"+resSet.getString(2)+"#"+resSet.getString(3)+"#"+resSet.getString(4)+"#"+resSet.getString(5)+"#"+resSet.getString(6));
                 try {
-                    oos = new ObjectOutputStream(sock.getOutputStream());
+                    //oos = new ObjectOutputStream(sock.getOutputStream());
                     oos.writeObject(rep); 
                     oos.flush();
                 } 
@@ -138,7 +139,7 @@ public class RequeteProtocol implements Requete, Serializable {
                     rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
 
                     try {
-                        oos = new ObjectOutputStream(sock.getOutputStream());
+                        //oos = new ObjectOutputStream(sock.getOutputStream());
                         oos.writeObject(rep);
                         oos.flush();
                     } catch (IOException ex) { 
@@ -149,7 +150,7 @@ public class RequeteProtocol implements Requete, Serializable {
             else {
                 rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK, "");
                 try {
-                    oos = new ObjectOutputStream(sock.getOutputStream());
+                    //oos = new ObjectOutputStream(sock.getOutputStream());
                     oos.writeObject(rep); 
                     oos.flush();
                 } 
@@ -158,7 +159,7 @@ public class RequeteProtocol implements Requete, Serializable {
                     rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
 
                     try {
-                        oos = new ObjectOutputStream(sock.getOutputStream());
+                        //oos = new ObjectOutputStream(sock.getOutputStream());
                         oos.writeObject(rep);
                         oos.flush();
                     } catch (IOException ex) { 
@@ -170,7 +171,7 @@ public class RequeteProtocol implements Requete, Serializable {
         catch(Exception e) {
             rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK, "");
             try {
-                oos = new ObjectOutputStream(sock.getOutputStream());
+                //oos = new ObjectOutputStream(sock.getOutputStream());
                 oos.writeObject(rep); 
                 oos.flush();
             } 
@@ -179,7 +180,7 @@ public class RequeteProtocol implements Requete, Serializable {
                 rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
 
                 try {
-                    oos = new ObjectOutputStream(sock.getOutputStream());
+                    //oos = new ObjectOutputStream(sock.getOutputStream());
                     oos.writeObject(rep);
                     oos.flush();
                 } catch (IOException iex) { 
@@ -191,9 +192,9 @@ public class RequeteProtocol implements Requete, Serializable {
         } 
     }
     
-    private boolean requeteLogin(Socket sock, LogServeur ls) { 
+    private boolean requeteLogin(Socket sock, ConsoleServeur ls, ObjectOutputStream oos) { 
         StringTokenizer st = new StringTokenizer(this.charge, "#");
-        ObjectOutputStream oos;
+        //ObjectOutputStream oos;
         ReponseProtocol rep; 
         
         try {
@@ -206,14 +207,14 @@ public class RequeteProtocol implements Requete, Serializable {
         String pwd = st.nextToken();
         
         try {
-            String log = (String)getHashtable().get(pwd);
-            if(log!=null) {
+            String log = (String)getHashtable().get(pwd); 
+            if(log!=null) { 
                 if(log.equals(login)) {
                     System.out.println("<RequeteProtocole> Logged");
                     ls.TraceEvenements("Logged # RequeteProtocole"); 
                     rep = new ReponseProtocol(ReponseProtocol.LOGIN_OK, "");
                     try {
-                        oos = new ObjectOutputStream(sock.getOutputStream());
+                        //oos = new ObjectOutputStream(sock.getOutputStream());
                         oos.writeObject(rep); 
                         oos.flush();
                         return true; 
@@ -223,7 +224,7 @@ public class RequeteProtocol implements Requete, Serializable {
                         rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
  
                         try {
-                            oos = new ObjectOutputStream(sock.getOutputStream());
+                            //oos = new ObjectOutputStream(sock.getOutputStream());
                             oos.writeObject(rep);
                             oos.flush();
                             return false; 
@@ -237,7 +238,7 @@ public class RequeteProtocol implements Requete, Serializable {
                     rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
  
                     try {
-                        oos = new ObjectOutputStream(sock.getOutputStream());
+                        //oos = new ObjectOutputStream(sock.getOutputStream());
                         oos.writeObject(rep);
                         oos.flush();
                         return false; 
@@ -251,7 +252,7 @@ public class RequeteProtocol implements Requete, Serializable {
                 rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
  
                 try {
-                    oos = new ObjectOutputStream(sock.getOutputStream());
+                    //oos = new ObjectOutputStream(sock.getOutputStream());
                     oos.writeObject(rep);
                     oos.flush();
                     return false; 
@@ -265,7 +266,7 @@ public class RequeteProtocol implements Requete, Serializable {
             rep = new ReponseProtocol(ReponseProtocol.LOGIN_PASOK , "");
  
             try {
-                oos = new ObjectOutputStream(sock.getOutputStream());
+                //oos = new ObjectOutputStream(sock.getOutputStream());
                 oos.writeObject(rep);
                 oos.flush();
                 return false; 
@@ -275,7 +276,7 @@ public class RequeteProtocol implements Requete, Serializable {
         }
         return false; 
     }
-    private void requeteVerifBooking(Socket s, LogServeur ls) {
+    private void requeteVerifBooking(Socket s, ConsoleServeur ls, ObjectOutputStream oos) {
         StringTokenizer strtok = new StringTokenizer(this.charge, "#");
         String reser = strtok.nextToken();
         int nbpass = Integer.parseInt(strtok.nextToken());
@@ -292,8 +293,8 @@ public class RequeteProtocol implements Requete, Serializable {
                 String str = (resSet.getString(1)+"\t\t"+resSet.getString(2)+"\t"+resSet.getString(3)+"\t"+resSet.getString(4)+"\t"+resSet.getString(5)+"\n");
                 rep = new ReponseProtocol(ReponseProtocol.RESERV_OK,str);
             } 
-            ObjectOutputStream oos;
-            oos = new ObjectOutputStream(s.getOutputStream());
+            //ObjectOutputStream oos;
+            //oos = new ObjectOutputStream(s.getOutputStream());
             oos.writeObject(rep);
             oos.flush();
         }
@@ -302,7 +303,7 @@ public class RequeteProtocol implements Requete, Serializable {
         } 
     }
     
-     private void requeteListeClients(Socket s, LogServeur ls)
+     private void requeteListeClients(Socket s, ConsoleServeur ls, ObjectOutputStream oos)
     {
         GestionBD gdb = new GestionBD();
         ReponseProtocol rep;
@@ -328,8 +329,8 @@ public class RequeteProtocol implements Requete, Serializable {
             }
             mess+=("end"+"#");
             rep = new ReponseProtocol(ReponseProtocol.LISTE_OK,mess);
-            ObjectOutputStream oos;
-            oos = new ObjectOutputStream(s.getOutputStream());
+            //ObjectOutputStream oos;
+            //oos = new ObjectOutputStream(s.getOutputStream());
             oos.writeObject(rep);
             oos.flush();
         }
@@ -338,7 +339,7 @@ public class RequeteProtocol implements Requete, Serializable {
         } 
     }
     
-    private void requeteBuyTicket(Socket s, LogServeur ls) {
+    private void requeteBuyTicket(Socket s, ConsoleServeur ls, ObjectOutputStream oos) {
         System.out.println(this.charge);
         String matricule="1BDO123";
         StringTokenizer strtokk = new StringTokenizer(this.charge, " ");
@@ -360,11 +361,9 @@ public class RequeteProtocol implements Requete, Serializable {
             
             newtitu=true;
             matricule=titu[3];
-            System.out.println("haha");
         }
         else
         {
-            System.out.println("haha????");
              tempo = strtok.nextToken();
              matricule = strtok.nextToken();
              StringTokenizer strtokkk = new StringTokenizer(tempo, " ");
@@ -410,8 +409,8 @@ public class RequeteProtocol implements Requete, Serializable {
             System.err.println("<BuyTicket> " + e.getMessage());
         } 
         try {
-            ObjectOutputStream oos;
-            oos = new ObjectOutputStream(s.getOutputStream());
+            //ObjectOutputStream oos;
+            //oos = new ObjectOutputStream(s.getOutputStream());
             oos.writeObject(rep);
             oos.flush();
         }
@@ -420,7 +419,7 @@ public class RequeteProtocol implements Requete, Serializable {
         } 
     }
     
-    private void requeteListeTraversee(Socket s, LogServeur ls)
+    private void requeteListeTraversee(Socket s, ConsoleServeur ls, ObjectOutputStream oos)
     {
         GestionBD gdb = new GestionBD();
         ReponseProtocol rep;
@@ -435,8 +434,8 @@ public class RequeteProtocol implements Requete, Serializable {
             mess+=("end"+"#");
 
             rep = new ReponseProtocol(ReponseProtocol.LISTE_OK,mess);
-            ObjectOutputStream oos;
-            oos = new ObjectOutputStream(s.getOutputStream());
+            //ObjectOutputStream oos;
+            //oos = new ObjectOutputStream(s.getOutputStream());
             oos.writeObject(rep);
             oos.flush();
         }
@@ -445,7 +444,12 @@ public class RequeteProtocol implements Requete, Serializable {
         } 
     }
     
-    private void requeteClose(Socket sock, LogServeur ls) {
+    private void requeteClose(Socket sock, ConsoleServeur ls, ObjectOutputStream oos) {
         System.exit(0); 
+    }
+
+    @Override
+    public Runnable createRunnable(Socket s, ObjectInputStream ois, ObjectOutputStream oos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -3,17 +3,23 @@ package rti_partie2;
 import log.LogServeur;
 import java.net.*;
 import java.io.*; 
+import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import rti_interface.*;
 import rti_Windows.*;
 
 public class ThreadServer extends Thread {
     private int port;
-    private ListeTaches tachesAExecuter; 
-    private LogServeur logServ; 
+    private SourceTache tachesAExecuter; 
+    private ConsoleServeur logServ; 
     private ServerSocket SSocket = null;
     private int maxClient = 3; 
+    List<Socket> listCli;
+    List<Thread> listThread = null;
 
+    // avant admin 
     public ThreadServer(int p, ListeTaches lt, LogServeur ls) { 
        port = p; tachesAExecuter = lt; logServ = ls;
 
@@ -27,6 +33,7 @@ public class ThreadServer extends Thread {
         }
     }
 
+    /*
     @Override
     public void run()
     {
@@ -83,6 +90,79 @@ public class ThreadServer extends Thread {
             else {
                 System.out.println("<ThreadServer> Pas de mise en file");
                 logServ.TraceEvenements("Pas de mise en file # thread serveur");
+            }
+        }
+    }*/
+    
+    // avec admin 
+    public ThreadServer(int p, SourceTache st, ConsoleServeur fs, List<Socket> listc, List<Thread> listT) {
+       port = p; tachesAExecuter = st; logServ = fs;
+       listCli = listc;
+       listThread = listT;
+       this.setName("Serveur (" + getName() +")");
+    }
+    
+    public void run() {
+        try {
+           SSocket = new ServerSocket(port);
+        }
+        catch (IOException e) {
+           logServ.TraceEvenements("ServeurCompagnie : IOException Erreur de port d'écoute " + e.getMessage());
+           System.exit(1);
+        }
+        // Démarrage du pool de threads
+        logServ.TraceEvenements("ServeurCompagnie :Creation des threads du pool de thread");
+        for (int i=0; i<3; i++) { // 3 devrait être constante ou une propriété du fichier de config
+            ThreadClient thr;
+            thr = new ThreadClient (tachesAExecuter, "Thread du pool n" + String.valueOf(i));
+            thr.start();
+            
+            listThread.add(thr);
+        }
+
+        // Mise en attente du serveur
+        Socket CSocket = null;
+        while (!isInterrupted()) {
+            try {
+                logServ.TraceEvenements("ServeurCompagnie : attente sur accept");
+                CSocket = SSocket.accept();
+                if(port != 59002) { // On accepte des clients et pas des admins
+                    listCli.add(CSocket);
+                }
+                logServ.TraceEvenements(CSocket.getRemoteSocketAddress().toString()+"#accept#thread serveurCompagnie");
+            }
+            catch (IOException e) {
+                logServ.TraceEvenements("ServeurCompagnie : IOException Erreur d'accept " + e.getMessage());
+                System.exit(1);
+            }
+
+            ObjectInputStream ois=null;
+            Requete req = null;
+            try {
+                ois = new ObjectInputStream(CSocket.getInputStream());
+                req = (Requete)ois.readObject();
+                logServ.TraceEvenements("ServeurCompagnie : Requete lue par le serveur");
+                
+            }
+            catch (ClassNotFoundException e) {
+                logServ.TraceEvenements("ServeurCompagnie : ClassNotFoundException Erreur de def de classe " + e.getMessage());
+            }
+            catch (IOException e) {
+                logServ.TraceEvenements("ServeurCompagnie : IOException " + e.getMessage());
+            }
+
+            Runnable travail;
+            try {
+               
+                travail = req.createRunnable(CSocket, logServ, ois, new ObjectOutputStream(CSocket.getOutputStream()));
+               
+                if (travail != null) {
+                    tachesAExecuter.recordTache(travail);
+                    logServ.TraceEvenements("ServeurCompagnie : Travail mis dans la file d'attente");
+                }
+            else logServ.TraceEvenements("ServeurCompagnie : Pas de mise en file");
+            } catch (IOException ex) {
+               Logger.getLogger(ThreadServer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

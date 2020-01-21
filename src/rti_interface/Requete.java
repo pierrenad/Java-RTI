@@ -19,6 +19,9 @@ public interface Requete
 {
  // Ce qui va être exécuté doit connaître la socket du client distant
  // ainsi que le GUI qui affiche les traces
- public Runnable createRunnable (Socket s, ObjectInputStream ois, LogServeur cs); 
- //public Runnable createRunnable (Socket s, ConsoleServeur cs, ObjectInputStream ois, ObjectOutputStream oos); 
+ // avant admin
+ //public Runnable createRunnable (Socket s, ObjectInputStream ois, LogServeur cs); 
+ // avec admin 
+ public Runnable createRunnable (Socket s, ObjectInputStream ois, ObjectOutputStream oos); 
+ public Runnable createRunnable (Socket s, ConsoleServeur cs, ObjectInputStream ois, ObjectOutputStream oos); 
 } 

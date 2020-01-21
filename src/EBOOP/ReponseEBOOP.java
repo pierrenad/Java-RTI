@@ -41,6 +41,8 @@ public class ReponseEBOOP implements Reponse, Serializable {
     public static int BUY_CART_OK= 117;
     public static int BUY_CART_BAD_MONEY = 118;
     
+    public static int REMOVE_OK = 119;
+    
     private int codeRet;
     private String charge; 
     

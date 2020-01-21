@@ -14,6 +14,7 @@ import network.Network;
 import CHECKINAP.ReponseProtocol;
 import CHECKINAP.RequeteProtocol;
 import java.util.StringTokenizer;
+import rti_partie2.Lecture;
 
 /**
  *
@@ -29,10 +30,14 @@ public class CustomerWindow extends javax.swing.JFrame {
      */
     public CustomerWindow() {
         initComponents();
+        Lecture lect = new Lecture(this); 
+        lect.start();
     }
     public CustomerWindow(Socket s) {
         initComponents(); 
         cSock = s; 
+        Lecture lect = new Lecture(this); 
+        lect.start();
     }
 
     /**
@@ -272,6 +277,7 @@ public class CustomerWindow extends javax.swing.JFrame {
         catch(Exception e) {
             System.err.println("<Close> " + e.getMessage()); 
         } 
+        this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
     /**

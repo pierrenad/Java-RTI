@@ -28,6 +28,7 @@ public class RequeteProtocolCard implements Requete, Serializable{
     
     public static int CHECK_CARD = 1;
     public static int CLOSE = 2;
+    public static int CHECK_CARD2 = 3; 
     
     private int type;
     private Socket socketClient;
@@ -45,25 +46,35 @@ public class RequeteProtocolCard implements Requete, Serializable{
     }
 
     @Override
-    public Runnable createRunnable(Socket s, ObjectInputStream ois, LogServeur cs) {
+    public Runnable createRunnable(Socket s, ObjectInputStream ois, ObjectOutputStream oos) {
         if(type == CHECK_CARD) {
             return new Runnable() {
                 public void run() {
-                    RequeteCheckCard(s, cs);
+                    RequeteCheckCard(s);
+                }
+            }; 
+        }
+        else if(type == CHECK_CARD2) {
+            return new Runnable() {
+                public void run() {
+                    RequeteCheckCard2(s);
                 }
             }; 
         }
         else if(type == CLOSE) {
             return new Runnable() {
                 public void run() {
-                    RequeteClose(s, cs);
+                    RequeteClose(s);
                 }
             }; 
         }
         else return null;
     }
     
-    private void RequeteCheckCard(Socket s, ConsoleServeur cs) {
+    @Override
+    public Runnable createRunnable(Socket s, ConsoleServeur cs, ObjectInputStream ois, ObjectOutputStream oos) { return null; }
+    
+    private void RequeteCheckCard2(Socket s) {
         StringTokenizer strtok = new StringTokenizer(this.charge, "#");
         String numcarte = strtok.nextToken();
         String code = strtok.nextToken();
@@ -74,7 +85,42 @@ public class RequeteProtocolCard implements Requete, Serializable{
             ResultSet resSet = gdb.CheckPayement(numcarte,code);
             ReponseProtocolCard rep; 
             if(!resSet.next()) { 
-                System.out.println("yo1");
+                rep = new ReponseProtocolCard(ReponseProtocolCard.CODEPASOK,"The card have bad informations");
+            }
+            else { 
+                
+                int argent = resSet.getInt(1);
+                System.out.println(""+argent);
+                strtok.nextToken(); // date on s'en fou 
+                float prix = Float.parseFloat(strtok.nextToken()); // prix 
+                if(argent<prix) { 
+                    rep = new ReponseProtocolCard(ReponseProtocolCard.CARTEPASOK,"You don't have enough money on this card");
+                }
+                else {
+                    rep = new ReponseProtocolCard(ReponseProtocolCard.CARTEOK,"The payement is done");
+                } 
+            } 
+            ObjectOutputStream oos;
+            oos = new ObjectOutputStream(s.getOutputStream());
+            oos.writeObject(rep);
+            oos.flush();
+        }
+        catch(Exception e) {
+            System.err.println("<CheckCard> " + e.getMessage());
+        } 
+    }
+    
+    private void RequeteCheckCard(Socket s) {
+        StringTokenizer strtok = new StringTokenizer(this.charge, "#");
+        String numcarte = strtok.nextToken();
+        String code = strtok.nextToken();
+        
+        GestionBD gdb = new GestionBD(); 
+        try {
+            gdb.connection("DB_CARD","user","user"); 
+            ResultSet resSet = gdb.CheckPayement(numcarte,code);
+            ReponseProtocolCard rep; 
+            if(!resSet.next()) { 
                 rep = new ReponseProtocolCard(ReponseProtocolCard.CODEPASOK,"");
             }
             else { 
@@ -98,7 +144,7 @@ public class RequeteProtocolCard implements Requete, Serializable{
         } 
     }
     
-    private void RequeteClose(Socket s, ConsoleServeur cs) {
+    private void RequeteClose(Socket s) {
         try {
             s.close();
         } catch (IOException ex) {

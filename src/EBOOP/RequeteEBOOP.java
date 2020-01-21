@@ -30,6 +30,8 @@ public class RequeteEBOOP implements Requete, Serializable {
     public static final int VIEW_CART = 4; 
     public static final int BUY_CART = 5; 
     public static final int RESERV = 6; 
+    public static final int DELETE_CART = 7;
+    public static final int REMOVE_FROM_CART = 8; 
     
     public static final long serialVersionUID = 683388106844655395L; // Pas touche 
     
@@ -71,7 +73,7 @@ public class RequeteEBOOP implements Requete, Serializable {
     }
 
     @Override
-    public Runnable createRunnable(final Socket s, final ObjectInputStream ois, final LogServeur ls) {  
+    public Runnable createRunnable(final Socket s, final ConsoleServeur ls, final ObjectInputStream ois, final ObjectOutputStream oos) {  
         if (type==REGISTER)
             return new Runnable()
             {
@@ -120,6 +122,22 @@ public class RequeteEBOOP implements Requete, Serializable {
                     Reservation(s, ls); 
                 }
             }; 
+        else if (type==DELETE_CART)
+            return new Runnable() 
+            {
+                public void run() 
+                {
+                    DeleteCart(s, ls); 
+                }
+            }; 
+        else if (type==REMOVE_FROM_CART) 
+            return new Runnable() 
+            {
+                public void run() 
+                {
+                    RemoveFromCart(s, ls); 
+                }
+            }; 
         else return null; 
         
         /*return new Runnable() {
@@ -161,6 +179,65 @@ public class RequeteEBOOP implements Requete, Serializable {
                 }
             }
         };*/
+    }
+    
+    public void RemoveFromCart(Socket s, ConsoleServeur cs) { 
+        GestionBD gdb = new GestionBD(); 
+        ObjectOutputStream oos;
+        ReponseEBOOP rep; 
+        try {
+            gdb.connection("HappyFerryDB","user","user");
+
+            gdb.setDimPlace(this.charge); 
+
+            rep = new ReponseEBOOP(ReponseEBOOP.REMOVE_OK, null); // on envoie l'id
+
+            try {
+                oos = new ObjectOutputStream(s.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException e) {
+                System.err.println("<RequeteEBOOP> Erreur réseau "+  e.getMessage());
+            }
+        }
+        catch(Exception e) {
+            System.err.println("<DeleteCart> " + e.getMessage());
+        } 
+    }
+    
+    public void DeleteCart(Socket s, ConsoleServeur cs) { 
+        GestionBD gdb = new GestionBD(); 
+        ObjectOutputStream oos;
+        ReponseEBOOP rep; 
+        String res = "";
+        String crossing = ""; 
+        try {
+            gdb.connection("HappyFerryDB","user","user");
+            StringTokenizer st = new StringTokenizer(this.charge, "#\n");
+            while(st.hasMoreTokens())
+            {
+                st.nextToken(); 
+                st.nextToken(); 
+                st.nextToken(); 
+                st.nextToken(); 
+                gdb.setDimPlace(st.nextToken()); 
+            }
+
+            /*rep = new ReponseEBOOP(ReponseEBOOP.RESERV_OK, res); // on envoie l'id
+            
+            try {
+                oos = new ObjectOutputStream(s.getOutputStream());
+                oos.writeObject(rep); 
+                oos.flush();
+            } 
+            catch (IOException e) {
+                System.err.println("<RequeteEBOOP> Erreur réseau "+  e.getMessage());
+            }*/
+        }
+        catch(Exception e) {
+            System.err.println("<DeleteCart> " + e.getMessage());
+        } 
     }
     
     public void Reservation(Socket s, ConsoleServeur cs) { 
@@ -297,7 +374,7 @@ public class RequeteEBOOP implements Requete, Serializable {
                 rep = new ReponseEBOOP(ReponseEBOOP.ADD_CART_OK, ""); 
             }
             else {
-                rep = new ReponseEBOOP(ReponseEBOOP.ADD_CART_OK, ""); 
+                rep = new ReponseEBOOP(ReponseEBOOP.ADD_CART_PAS_OK, ""); 
             }
             try {
                 oos = new ObjectOutputStream(s.getOutputStream());
@@ -320,7 +397,10 @@ public class RequeteEBOOP implements Requete, Serializable {
         String mess = ""; 
         try { 
             gdb.connection("HappyFerryDB","user","user"); 
-            ResultSet rs = gdb.requete("select * from traversees order by depart_traversee;"); 
+            ResultSet rs = gdb.requete("select * from traversees t INNER JOIN navires n " +
+                                        "Where n.capacite_navire_leger-t.nbtickets_traversee >0 " +
+                                        "And t.navire_traversee = n.matricule_navire " +
+                                        "order by depart_traversee;"); 
             
             while(rs.next()) {
                 mess+=(rs.getString(1)+'#'+rs.getTimestamp(2)+'#'+rs.getString(3)+'#'+rs.getString(4)+'#'+rs.getString(5)+'#'+rs.getInt(6)+'#'+rs.getInt(7)+'#'+rs.getInt(8)+'#'+rs.getFloat(9)+'#'+"\n"); 
@@ -383,5 +463,10 @@ public class RequeteEBOOP implements Requete, Serializable {
         catch(Exception e) {
             System.err.println("<Register> " + e.getMessage());
         } 
+    }
+
+    @Override
+    public Runnable createRunnable(Socket s, ObjectInputStream ois, ObjectOutputStream oos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

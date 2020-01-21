@@ -8,9 +8,12 @@ package rti_partie2;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import log.LogServeur;
 import rti_interface.Requete;
 
@@ -80,15 +83,21 @@ public class ServerALaDemande extends Thread {
                 System.err.println("<Server A Demande> Erreur " + e.getMessage()); 
             } 
 
-            Runnable travail = req.createRunnable(CSocket, ois, logServ);
-            if (travail != null) {
-                tachesAExecuter.recordTache(travail);
-                System.out.println("<Server A Demande> Travail mis dans la file");
-                logServ.TraceEvenements("Ajout d'un travail dans la file # server a demande");
-            }
-            else {
-                System.out.println("<Server A Demande> Pas de mise en file");
-                logServ.TraceEvenements("Pas de mise en file # server a demande");
+            Runnable travail;
+            try {
+                travail = req.createRunnable(CSocket, ois, new ObjectOutputStream(CSocket.getOutputStream()));
+            
+                if (travail != null) {
+                    tachesAExecuter.recordTache(travail);
+                    System.out.println("<Server A Demande> Travail mis dans la file");
+                    logServ.TraceEvenements("Ajout d'un travail dans la file # server a demande");
+                }
+                else {
+                    System.out.println("<Server A Demande> Pas de mise en file");
+                    logServ.TraceEvenements("Pas de mise en file # server a demande");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ServerALaDemande.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

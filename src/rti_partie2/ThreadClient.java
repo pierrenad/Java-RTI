@@ -10,6 +10,8 @@ package rti_partie2;
  * @author tiboo
  */
 
+import java.net.Socket;
+import java.util.List;
 import log.LogServeur;
 import rti_interface.*;
 
@@ -19,13 +21,14 @@ public class ThreadClient extends Thread {
     private Runnable tacheEnCours;
     LogServeur logserv; 
 
+    // avant admin 
     public ThreadClient(SourceTache st, String n, LogServeur ls) {
        tachesAExecuter = st;
        nom = n;
        logserv = ls; 
     }
 
-    @Override 
+    /*@Override 
     public void run() {
         while (!isInterrupted()) {
             try {
@@ -40,5 +43,31 @@ public class ThreadClient extends Thread {
             logserv.TraceEvenements("Run de tachesEnCours # thread client");
             tacheEnCours.run();
         }
-    } 
+    } */
+    
+    // avec admin
+    private List<Socket> listCli;
+    public ThreadClient(SourceTache st, String n ) {
+        tachesAExecuter = st;
+        nom = n;
+        setName(nom);
+    }
+
+    public ThreadClient(SourceTache st, String n, List<Socket> list ) {
+        tachesAExecuter = st;
+        nom = n;
+        setName(nom);
+        listCli = list;
+    }
+    
+    public void run() {
+        while (!isInterrupted()) {
+            try {
+                tacheEnCours = tachesAExecuter.getTache();
+            }
+            catch (InterruptedException e) { }
+
+            tacheEnCours.run();
+        }
+    }
 }

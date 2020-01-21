@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import network.Network;
 
@@ -169,7 +171,7 @@ public class LoginWindow extends javax.swing.JFrame {
         ReponseProtocol rep = null;
         try {
             ois = new ObjectInputStream(cSock.getInputStream()); 
-            rep = (ReponseProtocol)ois.readObject();
+            rep = (ReponseProtocol)ois.readObject(); // va pas 
             System.out.println("<LoginWindow> *** Reponse reçue");
             
             if(rep.getCode() == ReponseProtocol.LOGIN_OK) {
@@ -183,6 +185,7 @@ public class LoginWindow extends javax.swing.JFrame {
         }
         catch (Exception e) { 
             System.err.println("<LoginWindow> " + e.getMessage()); 
+            Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_validerButtonActionPerformed
 

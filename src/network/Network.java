@@ -25,7 +25,7 @@ public class Network {
         String adresse = "192.168.1.55";
         int port = 59000; 
 
-        /*try {
+        try {
             FileInputStream in = new FileInputStream("donnees.properties");
             Properties data = new Properties();
             data.load(in);
@@ -33,7 +33,7 @@ public class Network {
             port = Integer.parseInt((String) data.getProperty("port"));
         } catch (Exception e) { 
             System.err.println("<Network-Init> " + e.getMessage()); 
-        }*/
+        }
 
         cSock = null;
         try {
@@ -48,10 +48,10 @@ public class Network {
     
     public Socket InitOnDemand() {
         Socket cSock;
-        String adresse = "192.168.1.55";
+        String adresse = "192.168.43.236";
         int port = 59001; 
                 
-        /*try {
+        try {
             FileInputStream in = new FileInputStream("donnees.properties");
             Properties data = new Properties();
             data.load(in);
@@ -59,7 +59,7 @@ public class Network {
             port = Integer.parseInt((String) data.getProperty("portC"));
         } catch (Exception e) { 
             System.err.println(e.getMessage()); 
-        }*/
+        }
         
         cSock = null;
         try {
@@ -69,6 +69,58 @@ public class Network {
             System.err.println("<Network-Init> Erreur ! Aucune correspondance serveur trouvée : "+ e.getMessage()); 
         }
         
+        return cSock;
+    }
+    
+    public Socket InitAdmin() {
+        Socket cSock;
+        String adresse = "192.168.1.55";
+        int port = 59002; 
+
+        try {
+            FileInputStream in = new FileInputStream("donnees.properties");
+            Properties data = new Properties();
+            data.load(in);
+            adresse = (String)data.get("ip");
+            port = Integer.parseInt((String) data.getProperty("portAdmin"));
+        } catch (Exception e) { 
+            System.err.println("<Network-Init> " + e.getMessage()); 
+        }
+
+        cSock = null;
+        try {
+            cSock = new Socket(adresse, port); 
+        }
+        catch (Exception e) {
+            System.err.println("<Network-Init> Erreur ! Aucune correspondance serveur trouvée : " + e.getMessage()); 
+        }
+
+        return cSock;
+    }
+    
+    public Socket InitLect() {
+        Socket cSock;
+        String adresse = "192.168.1.55";
+        int port = 59003; 
+
+        try {
+            FileInputStream in = new FileInputStream("donnees.properties");
+            Properties data = new Properties();
+            data.load(in);
+            adresse = (String)data.get("ip");
+            port = Integer.parseInt((String) data.getProperty("portLect"));
+        } catch (Exception e) { 
+            System.err.println("<Network-Init> " + e.getMessage()); 
+        }
+
+        cSock = null;
+        try {
+            cSock = new Socket(adresse, port); 
+        }
+        catch (Exception e) {
+            System.err.println("<Network-Init> Erreur ! Aucune correspondance serveur trouvée : " + e.getMessage()); 
+        }
+
         return cSock;
     }
     
